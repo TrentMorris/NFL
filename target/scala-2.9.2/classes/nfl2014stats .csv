@@ -1,36 +1,36 @@
 Date,TeamName,ScoreOff,FirstDownOff,ThirdDownPctOff,RushAttOff,RushYdsOff,PassAttOff,PassCompOff,PassYdsOff,PassIntOff,FumblesOff,SackNumOff,SackYdsOff,PenYdsOff,TimePossOff,PuntAvgOff,Opponent,ScoreDef,FirstDownDef,ThirdDownPctDef,RushAttDef,RushYdsDef,PassAttDef,PassCompDef,PassYdsDef,PassIntDef,FumblesDef,SackNumDef,SackYdsDef,PenYdsDef,TimePossDef,Site,Line,TotalLine
-09/04/2014,Green Bay Packers,,,,,,,,,,,,,,,,Seattle Seahawks,,,,,,,,,,,,,,,V,,
-09/04/2014,Seattle Seahawks,,,,,,,,,,,,,,,,Green Bay Packers,,,,,,,,,,,,,,,H,,
-09/07/2014,Atlanta Falcons,,,,,,,,,,,,,,,,New Orleans Saints,,,,,,,,,,,,,,,H,,
-09/07/2014,Baltimore Ravens,,,,,,,,,,,,,,,,Cincinnati Bengals,,,,,,,,,,,,,,,H,,
-09/07/2014,Buffalo Bills,,,,,,,,,,,,,,,,Chicago Bears,,,,,,,,,,,,,,,V,,
-09/07/2014,Carolina Panthers,,,,,,,,,,,,,,,,Tampa Bay Buccaneers,,,,,,,,,,,,,,,V,,
-09/07/2014,Chicago Bears,,,,,,,,,,,,,,,,Buffalo Bills,,,,,,,,,,,,,,,H,,
-09/07/2014,Cincinnati Bengals,,,,,,,,,,,,,,,,Baltimore Ravens,,,,,,,,,,,,,,,V,,
-09/07/2014,Cleveland Browns,,,,,,,,,,,,,,,,Pittsburgh Steelers,,,,,,,,,,,,,,,V,,
-09/07/2014,Dallas Cowboys,,,,,,,,,,,,,,,,San Francisco 49ers,,,,,,,,,,,,,,,H,,
-09/07/2014,Denver Broncos,,,,,,,,,,,,,,,,Indianapolis Colts,,,,,,,,,,,,,,,H,,
-09/07/2014,Houston Texans,,,,,,,,,,,,,,,,Washington Redskins,,,,,,,,,,,,,,,H,,
-09/07/2014,Indianapolis Colts,,,,,,,,,,,,,,,,Denver Broncos,,,,,,,,,,,,,,,V,,
-09/07/2014,Jacksonville Jaguars,,,,,,,,,,,,,,,,Philadelphia Eagles,,,,,,,,,,,,,,,V,,
-09/07/2014,Kansas City Chiefs,,,,,,,,,,,,,,,,Tennessee Titans,,,,,,,,,,,,,,,H,,
-09/07/2014,Miami Dolphins,,,,,,,,,,,,,,,,New England Patriots,,,,,,,,,,,,,,,H,,
-09/07/2014,Minnesota Vikings,,,,,,,,,,,,,,,,St Louis Rams,,,,,,,,,,,,,,,V,,
-09/07/2014,New England Patriots,,,,,,,,,,,,,,,,Miami Dolphins,,,,,,,,,,,,,,,V,,
-09/07/2014,New Orleans Saints,,,,,,,,,,,,,,,,Atlanta Falcons,,,,,,,,,,,,,,,V,,
-09/07/2014,New York Jets,,,,,,,,,,,,,,,,Oakland Raiders,,,,,,,,,,,,,,,H,,
-09/07/2014,Oakland Raiders,,,,,,,,,,,,,,,,New York Jets,,,,,,,,,,,,,,,V,,
-09/07/2014,Philadelphia Eagles,,,,,,,,,,,,,,,,Jacksonville Jaguars,,,,,,,,,,,,,,,H,,
-09/07/2014,Pittsburgh Steelers,,,,,,,,,,,,,,,,Cleveland Browns,,,,,,,,,,,,,,,H,,
-09/07/2014,San Francisco 49ers,,,,,,,,,,,,,,,,Dallas Cowboys,,,,,,,,,,,,,,,V,,
-09/07/2014,St Louis Rams,,,,,,,,,,,,,,,,Minnesota Vikings,,,,,,,,,,,,,,,H,,
-09/07/2014,Tampa Bay Buccaneers,,,,,,,,,,,,,,,,Carolina Panthers,,,,,,,,,,,,,,,H,,
-09/07/2014,Tennessee Titans,,,,,,,,,,,,,,,,Kansas City Chiefs,,,,,,,,,,,,,,,V,,
-09/07/2014,Washington Redskins,,,,,,,,,,,,,,,,Houston Texans,,,,,,,,,,,,,,,V,,
-09/08/2014,Arizona Cardinals,,,,,,,,,,,,,,,,San Diego Chargers,,,,,,,,,,,,,,,H,,
-09/08/2014,Detroit Lions,,,,,,,,,,,,,,,,New York Giants,,,,,,,,,,,,,,,H,,
-09/08/2014,New York Giants,,,,,,,,,,,,,,,,Detroit Lions,,,,,,,,,,,,,,,V,,
-09/08/2014,San Diego Chargers,,,,,,,,,,,,,,,,Arizona Cardinals,,,,,,,,,,,,,,,V,,
+09/04/2014,Green Bay Packers,16,19,50%,21,80,33,23,175,1,0,3,14,65,26:40,38.3,Seattle Seahawks,36,25,36%,37,207,28,19,191,0,1,1,0,69,33:20,V,-5.5,46.5
+09/04/2014,Seattle Seahawks,36,25,36%,37,207,28,19,191,0,1,1,0,69,33:20,33,Green Bay Packers,16,19,50%,21,80,33,23,175,1,0,3,14,65,26:40,H,5.5,46.5
+09/07/2014,Atlanta Falcons,37,28,55%,25,123,43,31,445,0,1,1,3,96,30:26,52.3,New Orleans Saints,34,30,62%,28,139,42,29,333,1,1,0,0,27,29:34,H,-3,52
+09/07/2014,Baltimore Ravens,16,26,47%,20,91,62,35,329,1,1,3,16,29,29:30,42.3,Cincinnati Bengals,23,16,29%,26,79,38,25,301,0,0,0,0,45,30:30,H,1.5,42.5
+09/07/2014,Buffalo Bills,23,15,33%,33,193,22,16,167,1,0,1,6,108,28:05,43,Chicago Bears,20,29,42%,18,86,49,34,341,2,1,2,8,43,31:55,V,-6.5,47
+09/07/2014,Carolina Panthers,20,19,40%,33,113,34,24,221,0,0,1,9,55,35:12,47,Tampa Bay Buccaneers,14,17,50%,17,102,35,22,162,2,1,3,21,15,24:48,V,-3,37.5
+09/07/2014,Chicago Bears,20,29,42%,18,86,49,34,341,2,1,2,8,43,31:55,40,Buffalo Bills,23,15,33%,33,193,22,16,167,1,0,1,6,108,28:05,H,6.5,47
+09/07/2014,Cincinnati Bengals,23,16,29%,26,79,38,25,301,0,0,0,0,45,30:30,37.8,Baltimore Ravens,16,26,47%,20,91,62,35,329,1,1,3,16,29,29:30,V,-1.5,42.5
+09/07/2014,Cleveland Browns,27,23,18%,30,183,31,19,206,0,0,3,24,55,27:33,44.9,Pittsburgh Steelers,30,24,33%,28,127,35,24,363,1,0,4,27,96,32:27,V,-6.5,41
+09/07/2014,Dallas Cowboys,17,26,56%,23,127,37,23,255,3,1,3,26,72,31:24,52.5,San Francisco 49ers,28,19,58%,30,127,23,16,192,0,0,1,9,80,28:36,H,-3.5,51
+09/07/2014,Denver Broncos,31,24,50%,32,102,36,22,259,0,0,1,10,70,32:24,46.8,Indianapolis Colts,24,24,31%,14,54,53,35,354,2,0,3,16,45,27:36,H,7.5,55
+09/07/2014,Houston Texans,17,16,50%,33,115,22,14,201,0,1,1,5,45,29:06,51,Washington Redskins,6,20,25%,23,131,37,29,241,0,2,3,26,70,30:54,H,3,44.5
+09/07/2014,Indianapolis Colts,24,24,31%,14,54,53,35,354,2,0,3,16,45,27:36,49.8,Denver Broncos,31,24,50%,32,102,36,22,259,0,0,1,10,70,32:24,V,-7.5,55
+09/07/2014,Jacksonville Jaguars,17,18,14%,25,64,43,24,242,0,1,3,24,55,29:14,46.5,Philadelphia Eagles,34,24,42%,32,145,45,27,275,1,2,5,47,50,30:46,V,-10.5,51.5
+09/07/2014,Kansas City Chiefs,10,15,8%,17,67,35,19,178,3,0,4,24,25,22:16,42.6,Tennessee Titans,26,24,44%,38,162,33,22,243,0,0,4,23,110,37:44,H,3,44
+09/07/2014,Miami Dolphins,33,25,54%,38,191,32,18,169,1,2,1,9,26,30:27,50,New England Patriots,20,20,29%,20,89,56,29,226,0,2,4,23,100,29:33,H,-4,46.5
+09/07/2014,Minnesota Vikings,34,18,25%,31,185,25,17,160,0,0,1,10,60,28:17,47.4,St Louis Rams,6,15,29%,22,72,36,24,246,2,0,5,27,121,31:43,V,-3,43
+09/07/2014,New England Patriots,20,20,29%,20,89,56,29,226,0,2,4,23,100,29:33,48.2,Miami Dolphins,33,25,54%,38,191,32,18,169,1,2,1,9,26,30:27,V,4,46.5
+09/07/2014,New Orleans Saints,34,30,62%,28,139,42,29,333,1,1,0,0,27,29:34,50.5,Atlanta Falcons,37,28,55%,25,123,43,31,445,0,1,1,3,96,30:26,V,3,52
+09/07/2014,New York Jets,19,20,42%,34,212,29,23,190,1,1,2,31,105,34:50,44.2,Oakland Raiders,14,11,25%,15,25,32,20,133,0,0,2,18,20,25:10,H,5,40.5
+09/07/2014,Oakland Raiders,14,11,25%,15,25,32,20,133,0,0,2,18,20,25:10,44.6,New York Jets,19,20,42%,34,212,29,23,190,1,1,2,31,105,34:50,V,-5,40.5
+09/07/2014,Philadelphia Eagles,34,24,42%,32,145,45,27,275,1,2,5,47,50,30:46,38.3,Jacksonville Jaguars,17,18,14%,25,64,43,24,242,0,1,3,24,55,29:14,H,10.5,51.5
+09/07/2014,Pittsburgh Steelers,30,24,33%,28,127,35,24,363,1,0,4,27,96,32:27,43.7,Cleveland Browns,27,23,18%,30,183,31,19,206,0,0,3,24,55,27:33,H,6.5,41
+09/07/2014,San Francisco 49ers,28,19,58%,30,127,23,16,192,0,0,1,9,80,28:36,45.8,Dallas Cowboys,17,26,56%,23,127,37,23,255,3,1,3,26,72,31:24,V,3.5,51
+09/07/2014,St Louis Rams,6,15,29%,22,72,36,24,246,2,0,5,27,121,31:43,46.5,Minnesota Vikings,34,18,27%,30,186,25,17,160,0,0,1,10,60,28:17,H,3,43
+09/07/2014,Tampa Bay Buccaneers,14,17,50%,17,102,35,22,162,2,1,3,21,15,24:48,44,Carolina Panthers,20,19,40%,33,113,34,24,221,0,0,1,9,55,35:12,H,3,37.5
+09/07/2014,Tennessee Titans,26,24,44%,38,162,33,22,243,0,0,4,23,110,37:44,50.7,Kansas City Chiefs,10,15,8%,17,67,35,19,178,3,0,4,24,25,22:16,V,-3,44
+09/07/2014,Washington Redskins,6,20,25%,23,131,37,29,241,0,2,3,26,70,30:54,49.2,Houston Texans,17,16,50%,33,115,22,14,201,0,1,1,5,45,29:06,V,-3,44.5
+09/08/2014,Arizona Cardinals,18,22,46%,26,109,37,24,294,0,2,2,10,23,31:49,54.5,San Diego Chargers,17,15,40%,24,52,36,21,238,1,0,0,0,47,28:11,H,3,47
+09/08/2014,Detroit Lions,35,20,67%,30,76,32,22,341,0,0,1,5,85,36:04,54.5,New York Giants,14,16,23%,22,53,33,18,144,2,0,2,19,25,23:56,H,6.5,47
+09/08/2014,New York Giants,14,16,23%,22,53,33,18,144,2,0,2,19,25,23:56,40.2,Detroit Lions,35,20,67%,30,76,32,22,341,0,0,1,5,85,36:04,V,-6.5,47
+09/08/2014,San Diego Chargers,17,15,40%,24,52,36,21,238,1,0,0,0,47,28:11,39.3,Arizona Cardinals,18,15,46%,26,109,37,24,294,0,2,2,10,23,31:49,V,-3,47
 09/11/2014,Baltimore Ravens,,,,,,,,,,,,,,,,Pittsburgh Steelers,,,,,,,,,,,,,,,H,,
 09/11/2014,Pittsburgh Steelers,,,,,,,,,,,,,,,,Baltimore Ravens,,,,,,,,,,,,,,,V,,
 09/14/2014,Arizona Cardinals,,,,,,,,,,,,,,,,New York Giants,,,,,,,,,,,,,,,V,,

@@ -7,7 +7,7 @@
 [0m[[0mdebug[0m] [0m== resolving dependencies for nfl#nfl_2.9.2;1.0 [compile][0m
 [0m[[0mdebug[0m] [0m== resolving dependencies nfl#nfl_2.9.2;1.0->org.scala-lang#scala-library;2.9.2 [compile->default(compile)][0m
 [0m[[0minfo[0m] [0mResolving org.scala-lang#scala-library;2.9.2 ...[0m
-[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@4c925037[0m
+[0m[[0mdebug[0m] [0msbt-chain: Checking cache for: sbt.ivyint.MergedDescriptors@32788314[0m
 [0m[[0mdebug[0m] [0msbt-chain: module revision found in cache: org.scala-lang#scala-library;2.9.2[0m
 [0m[[0mdebug[0m] [0m	local: revision in cache: org.scala-lang#scala-library;2.9.2[0m
 [0m[[0mdebug[0m] [0m	found org.scala-lang#scala-library;2.9.2 in sbt-chain[0m
@@ -263,7 +263,7 @@
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#scala-compiler;2.9.2!scala-compiler.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.scala-lang#jline;2.9.2!jline.jar[0m
 [0m[[0mdebug[0m] [0m	[NOT REQUIRED] org.fusesource.jansi#jansi;1.4!jansi.jar[0m
-[0m[[0mdebug[0m] [0m:: resolution report :: resolve 547ms :: artifacts dl 53ms[0m
+[0m[[0mdebug[0m] [0m:: resolution report :: resolve 861ms :: artifacts dl 16ms[0m
 [0m[[0mdebug[0m] [0m	report for nfl#nfl_2.9.2;1.0 compile produced in /home/trent/Dropbox/NFL/target/resolution-cache/reports/nfl-nfl_2.9.2-compile.xml[0m
 [0m[[0mdebug[0m] [0m	report for nfl#nfl_2.9.2;1.0 runtime produced in /home/trent/Dropbox/NFL/target/resolution-cache/reports/nfl-nfl_2.9.2-runtime.xml[0m
 [0m[[0mdebug[0m] [0m	report for nfl#nfl_2.9.2;1.0 test produced in /home/trent/Dropbox/NFL/target/resolution-cache/reports/nfl-nfl_2.9.2-test.xml[0m
@@ -277,5 +277,5 @@
 [0m[[0mdebug[0m] [0m	report for nfl#nfl_2.9.2;1.0 docs produced in /home/trent/Dropbox/NFL/target/resolution-cache/reports/nfl-nfl_2.9.2-docs.xml[0m
 [0m[[0mdebug[0m] [0m	report for nfl#nfl_2.9.2;1.0 pom produced in /home/trent/Dropbox/NFL/target/resolution-cache/reports/nfl-nfl_2.9.2-pom.xml[0m
 [0m[[0mdebug[0m] [0m	report for nfl#nfl_2.9.2;1.0 scala-tool produced in /home/trent/Dropbox/NFL/target/resolution-cache/reports/nfl-nfl_2.9.2-scala-tool.xml[0m
-[0m[[0mdebug[0m] [0m	resolve done (547ms resolve - 53ms download)[0m
+[0m[[0mdebug[0m] [0m	resolve done (861ms resolve - 16ms download)[0m
 [0m[[0minfo[0m] [0mDone updating.[0m

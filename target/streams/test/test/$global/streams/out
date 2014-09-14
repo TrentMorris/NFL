@@ -1,0 +1,5 @@
+[0m[[0mdebug[0m] [0mRunning TaskDef(trent.nfl.StatisticalMethodsSpec, sbt.SubclassFingerprintWrapper@7c384dac, false, [SuiteSelector])[0m
+[0m[[0mdebug[0m] [0mSummary for specs2 not available.[0m
+[0m[[0minfo[0m] [0mPassed: Total 19, Failed 0, Errors 0, Passed 19[0m
+[0m[[0mdebug[0m] [0mPassed tests:[0m
+[0m[[0mdebug[0m] [0m	trent.nfl.StatisticalMethodsSpec[0m

@@ -9,12 +9,16 @@ object NFLPredictor {
     val master = system.actorOf(Props(new Master()), name = "master")
 
     val source = Source.fromURL(getClass.getResource("/nfl2013stats.csv"))
-    val statsList = source.mkString.replace("\n",",").split(",").toList
+    val statsList = source.mkString.replace("\n",",").split(",").toList.sliding(35,35).toList
+    // val secondSource = Source.fromURL(getClass.getResource("/nfl2014stats.csv"))
+    // val statsList2014 = secondSource.mkString.replace("\n",",").split(",").toList
 
+    for (game <- statsList){ for (stat <- game) print("\"" + stat + "\", " ); println("\n\n")}
 
-    val steelStats = StatisticMethods.getTeamStats("Pittsburgh Steelers", 1, statsList)
-    steelStats.foreach(println)
+    // for (index <- 0 to statsList2014.size) if (statsList2014(index) == "09/11/2014") println(index)
+
     master ! Game("Steelers", "Bengals")
 
   }
 }
+

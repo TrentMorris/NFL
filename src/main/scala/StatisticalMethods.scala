@@ -1,94 +1,221 @@
 package trent.nfl
 
 object StatisticMethods {
-
-	def getTeamStats(team:String, week: Int, statsList: List[String]): List[String] = {
-		if (week == 1){
-	   		val weekStats =  statsList.slice(WeekIndexes2013.weekOne, WeekIndexes2013.weekTwo)
-	    	val startIndex = weekStats.indexOf(team)
-	    	weekStats.slice(startIndex, startIndex + 34)
-	    }
-	    // else if (week == 2){
-	   	// 	val weekStats =  statsList.slice(WeekIndexes2013.weekTwo, WeekIndexes2013.weekThree)
-	    // 	val startIndex = weekStats.indexOf(team)
-	    // 	weekStats.slice(startIndex, startIndex + 34)
-	    // }
-	    // else if (week == 3){
-	   	// 	val weekStats =  statsList.slice(WeekIndexes2013.weekThree, WeekIndexes2013.weekFour)
-	    // 	val startIndex = weekStats.indexOf(team)
-	    // 	weekStats.slice(startIndex, startIndex + 34)
-	    // }
-	    // else if (week == 4){
-	   	// 	val weekStats =  statsList.slice(WeekIndexes2013.weekFour, WeekIndexes2013.weekFive)
-	    // 	val startIndex = weekStats.indexOf(team)
-	    // 	weekStats.slice(startIndex, startIndex + 34)
-	    // }
-	    // else if (week == 5){
-	   	// 	val weekStats =  statsList.slice(WeekIndexes2013.weekFive, WeekIndexes2013.weekSix)
-	    // 	val startIndex = weekStats.indexOf(team)
-	    // 	weekStats.slice(startIndex, startIndex + 34)
-	    // }
-	    // else if (week == 6){
-	   	// 	val weekStats =  statsList.slice(WeekIndexes2013.weekSix, WeekIndexes2013.weekSeven)
-	    // 	val startIndex = weekStats.indexOf(team)
-	    // 	weekStats.slice(startIndex, startIndex + 34)
-	    // }
-	    // else if (week == 7){
-	   	// 	val weekStats =  statsList.slice(WeekIndexes2013.weekSeven, WeekIndexes2013.weekEight)
-	    // 	val startIndex = weekStats.indexOf(team)
-	    // 	weekStats.slice(startIndex, startIndex + 34)
-	    // }
-	    // else if (week == 8){
-	   	// 	val weekStats =  statsList.slice(WeekIndexes2013.weekEight, WeekIndexes2013.weekNine)
-	    // 	val startIndex = weekStats.indexOf(team)
-	    // 	weekStats.slice(startIndex, startIndex + 34)
-	    // }
-	    // else if (week == 9){
-	   	// 	val weekStats =  statsList.slice(WeekIndexes2013.weekNine, WeekIndexes2013.weekTen)
-	    // 	val startIndex = weekStats.indexOf(team)
-	    // 	weekStats.slice(startIndex, startIndex + 34)
-	    // }
-	    // else if (week == 10){
-	   	// 	val weekStats =  statsList.slice(WeekIndexes2013.weekTen, WeekIndexes2013.weekEleven)
-	    // 	val startIndex = weekStats.indexOf(team)
-	    // 	weekStats.slice(startIndex, startIndex + 34)
-	    // }
-	    // else if (week == 11){
-	   	// 	val weekStats =  statsList.slice(WeekIndexes2013.weekEleven, WeekIndexes2013.weekTwelve)
-	    // 	val startIndex = weekStats.indexOf(team)
-	    // 	weekStats.slice(startIndex, startIndex + 34)
-	    // }
-	    // else if (week == 12){
-	   	// 	val weekStats =  statsList.slice(WeekIndexes2013.weekTwelve, WeekIndexes2013.weekThirteen)
-	    // 	val startIndex = weekStats.indexOf(team)
-	    // 	weekStats.slice(startIndex, startIndex + 34)
-	    // }
-	    // else if (week == 13){
-	   	// 	val weekStats =  statsList.slice(WeekIndexes2013.weekThirteen, WeekIndexes2013.weekFourteen)
-	    // 	val startIndex = weekStats.indexOf(team)
-	    // 	weekStats.slice(startIndex, startIndex + 34)
-	    // }
-	    // else if (week == 14){
-	   	// 	val weekStats =  statsList.slice(WeekIndexes2013.weekFourteen, WeekIndexes2013.weekFifteen)
-	    // 	val startIndex = weekStats.indexOf(team)
-	    // 	weekStats.slice(startIndex, startIndex + 34)
-	    // }
-	    // else if (week == 15){
-	   	// 	val weekStats =  statsList.slice(WeekIndexes2013.weekFifteen, WeekIndexes2013.weekSixteen)
-	    // 	val startIndex = weekStats.indexOf(team)
-	    // 	weekStats.slice(startIndex, startIndex + 34)
-	    // }
-	    // else if (week == 16){
-	   	// 	val weekStats =  statsList.slice(WeekIndexes2013.weekSixteen, WeekIndexes2013.weekSeventeen)
-	    // 	val startIndex = weekStats.indexOf(team)
-	    // 	weekStats.slice(startIndex, startIndex + 34)
-	    // }
-	    // else if (week == 17){
-	   	// 	val weekStats =  statsList.slice(WeekIndexes2013.weekSeventeen, WeekIndexes2013.end)
-	    // 	val startIndex = weekStats.indexOf(team)
-	    // 	weekStats.slice(startIndex, startIndex + 34)
-	    // }
-	    else List[String]()
+	
+	def getTeamStats(team: String, week: Int, year: String, statsList: List[List[String]]): List[String] = {
+		if (year == "2013") get2013TeamStats(team, week, statsList)
+		else if (year == "2014") get2014TeamStats(team, week, statsList)
+		else List()
 	}
 
+	def get2014TeamStats(team: String, week: Int, statsList: List[List[String]]): List[String] = {
+		if (week == 1){
+	   		val gamesInWeek =  statsList.slice(WeekIndexes2014.weekOne, WeekIndexes2014.weekTwo)
+	    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+	    	if (startIndex == -1) List()
+			else gamesInWeek(startIndex)
+	    }
+	    else if (week == 2){
+	   		val gamesInWeek =  statsList.slice(WeekIndexes2014.weekTwo, WeekIndexes2014.weekThree)
+	    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+	    	if (startIndex == -1) List()
+			else gamesInWeek(startIndex)
+	    }
+	    else if (week == 3){
+	   		val gamesInWeek =  statsList.slice(WeekIndexes2014.weekThree, WeekIndexes2014.weekFour)
+	    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+	    	if (startIndex == -1) List()
+			else gamesInWeek(startIndex)
+	    }
+	    else if (week == 4){
+	   		val gamesInWeek =  statsList.slice(WeekIndexes2014.weekFour, WeekIndexes2014.weekFive)
+	    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+	    	if (startIndex == -1) List()
+			else gamesInWeek(startIndex)
+	    }
+	    else if (week == 5){
+	   		val gamesInWeek =  statsList.slice(WeekIndexes2014.weekFive, WeekIndexes2014.weekSix)
+	    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+	    	if (startIndex == -1) List()
+			else gamesInWeek(startIndex)
+	    }
+	    else if (week == 6){
+	   		val gamesInWeek =  statsList.slice(WeekIndexes2014.weekSix, WeekIndexes2014.weekSeven)
+	    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+	    	if (startIndex == -1) List()
+			else gamesInWeek(startIndex)
+	    }
+	    else if (week == 7){
+	   		val gamesInWeek =  statsList.slice(WeekIndexes2014.weekSeven, WeekIndexes2014.weekEight)
+	    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+	    	if (startIndex == -1) List()
+			else gamesInWeek(startIndex)
+	    }
+	    else if (week == 8){
+	   		val gamesInWeek =  statsList.slice(WeekIndexes2014.weekEight, WeekIndexes2014.weekNine)
+	    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+	    	if (startIndex == -1) List()
+			else gamesInWeek(startIndex)
+	    }
+	    else if (week == 9){
+	   		val gamesInWeek =  statsList.slice(WeekIndexes2014.weekNine, WeekIndexes2014.weekTen)
+	    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+	    	if (startIndex == -1) List()
+			else gamesInWeek(startIndex)
+	    }
+	    else if (week == 10){
+	   		val gamesInWeek =  statsList.slice(WeekIndexes2014.weekTen, WeekIndexes2014.weekEleven)
+	    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+	    	if (startIndex == -1) List()
+			else gamesInWeek(startIndex)
+	    }
+	    else if (week == 11){
+	   		val gamesInWeek =  statsList.slice(WeekIndexes2014.weekEleven, WeekIndexes2014.weekTwelve)
+	    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+	    	if (startIndex == -1) List()
+			else gamesInWeek(startIndex)
+	    }
+	    else if (week == 12){
+	   		val gamesInWeek =  statsList.slice(WeekIndexes2014.weekTwelve, WeekIndexes2014.weekThirteen)
+	    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+	    	if (startIndex == -1) List()
+			else gamesInWeek(startIndex)
+	    }
+	    else if (week == 13){
+	   		val gamesInWeek =  statsList.slice(WeekIndexes2014.weekThirteen, WeekIndexes2014.weekFourteen)
+	    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+	    	if (startIndex == -1) List()
+			else gamesInWeek(startIndex)
+	    }
+	    else if (week == 14){
+	   		val gamesInWeek =  statsList.slice(WeekIndexes2014.weekFourteen, WeekIndexes2014.weekFifteen)
+	    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+	    	if (startIndex == -1) List()
+			else gamesInWeek(startIndex)
+	    }
+	    else if (week == 15){
+	   		val gamesInWeek =  statsList.slice(WeekIndexes2014.weekFifteen, WeekIndexes2014.weekSixteen)
+	    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+	    	if (startIndex == -1) List()
+			else gamesInWeek(startIndex)
+	    }
+	    else if (week == 16){
+	   		val gamesInWeek =  statsList.slice(WeekIndexes2014.weekSixteen, WeekIndexes2014.weekSeventeen)
+	    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+	    	if (startIndex == -1) List()
+			else gamesInWeek(startIndex)
+	    }
+	    else if (week == 17){
+	   		val gamesInWeek =  statsList.slice(WeekIndexes2014.weekSeventeen, statsList.size)
+	    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+	    	if (startIndex == -1) List()
+			else gamesInWeek(startIndex)
+	    }
+	    else List[String]()
+	}
+		def get2013TeamStats(team:String, week: Int,  statsList: List[List[String]]): List[String] = {
+			if (week == 1){
+		   		val gamesInWeek =  statsList.slice(WeekIndexes2013.weekOne, WeekIndexes2013.weekTwo)
+		    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+		    	if (startIndex == -1) List()
+				else gamesInWeek(startIndex)
+		    }
+		    else if (week == 2){
+		   		val gamesInWeek =  statsList.slice(WeekIndexes2013.weekTwo, WeekIndexes2013.weekThree)
+		    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+		    	if (startIndex == -1) List()
+				else gamesInWeek(startIndex)
+		    }
+		    else if (week == 3){
+		   		val gamesInWeek =  statsList.slice(WeekIndexes2013.weekThree, WeekIndexes2013.weekFour)
+		    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+		    	if (startIndex == -1) List()
+				else gamesInWeek(startIndex)
+		    }
+		    else if (week == 4){
+		   		val gamesInWeek =  statsList.slice(WeekIndexes2013.weekFour, WeekIndexes2013.weekFive)
+		    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+		    	if (startIndex == -1) List()
+				else gamesInWeek(startIndex)
+		    }
+		    else if (week == 5){
+		   		val gamesInWeek =  statsList.slice(WeekIndexes2013.weekFive, WeekIndexes2013.weekSix)
+		    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+		    	if (startIndex == -1) List()
+				else gamesInWeek(startIndex)
+		    }
+		    else if (week == 6){
+		   		val gamesInWeek =  statsList.slice(WeekIndexes2013.weekSix, WeekIndexes2013.weekSeven)
+		    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+		    	if (startIndex == -1) List()
+				else gamesInWeek(startIndex)
+		    }
+		    else if (week == 7){
+		   		val gamesInWeek =  statsList.slice(WeekIndexes2013.weekSeven, WeekIndexes2013.weekEight)
+		    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+		    	if (startIndex == -1) List()
+				else gamesInWeek(startIndex)
+		    }
+		    else if (week == 8){
+		   		val gamesInWeek =  statsList.slice(WeekIndexes2013.weekEight, WeekIndexes2013.weekNine)
+		    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+		    	if (startIndex == -1) List()
+				else gamesInWeek(startIndex)
+		    }
+		    else if (week == 9){
+		   		val gamesInWeek =  statsList.slice(WeekIndexes2013.weekNine, WeekIndexes2013.weekTen)
+		    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+		    	if (startIndex == -1) List()
+				else gamesInWeek(startIndex)
+		    }
+		    else if (week == 10){
+		   		val gamesInWeek =  statsList.slice(WeekIndexes2013.weekTen, WeekIndexes2013.weekEleven)
+		    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+		    	if (startIndex == -1) List()
+				else gamesInWeek(startIndex)
+		    }
+		    else if (week == 11){
+		   		val gamesInWeek =  statsList.slice(WeekIndexes2013.weekEleven, WeekIndexes2013.weekTwelve)
+		    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+		    	if (startIndex == -1) List()
+				else gamesInWeek(startIndex)
+		    }
+		    else if (week == 12){
+		   		val gamesInWeek =  statsList.slice(WeekIndexes2013.weekTwelve, WeekIndexes2013.weekThirteen)
+		    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+		    	if (startIndex == -1) List()
+				else gamesInWeek(startIndex)
+		    }
+		    else if (week == 13){
+		   		val gamesInWeek =  statsList.slice(WeekIndexes2013.weekThirteen, WeekIndexes2013.weekFourteen)
+		    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+		    	if (startIndex == -1) List()
+				else gamesInWeek(startIndex)
+		    }
+		    else if (week == 14){
+		   		val gamesInWeek =  statsList.slice(WeekIndexes2013.weekFourteen, WeekIndexes2013.weekFifteen)
+		    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+		    	if (startIndex == -1) List()
+				else gamesInWeek(startIndex)
+		    }
+		    else if (week == 15){
+		   		val gamesInWeek =  statsList.slice(WeekIndexes2013.weekFifteen, WeekIndexes2013.weekSixteen)
+		    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+		    	if (startIndex == -1) List()
+				else gamesInWeek(startIndex)
+		    }
+		    else if (week == 16){
+		   		val gamesInWeek =  statsList.slice(WeekIndexes2013.weekSixteen, WeekIndexes2013.weekSeventeen)
+		    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+		    	if (startIndex == -1) List()
+				else gamesInWeek(startIndex)
+		    }
+		    else if (week == 17){
+		   		val gamesInWeek =  statsList.slice(WeekIndexes2013.weekSeventeen, statsList.size)
+		    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
+		    	if (startIndex == -1) List()
+				else gamesInWeek(startIndex)
+		    }
+		    else List[String]()
+	}	
 }
