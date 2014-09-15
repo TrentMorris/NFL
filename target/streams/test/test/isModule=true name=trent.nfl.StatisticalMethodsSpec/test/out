@@ -1,6 +1,6 @@
 [0m[[0minfo[0m] [0mStatisticalMethodsSpec[0m
 [0m[[0minfo[0m] [0m[0m
-[0m[[0minfo[0m] [0mgetTeamStats should  should[0m
+[0m[[0minfo[0m] [0mgetTeamStats for 2013  should[0m
 [0m[[0minfo[0m] [0m[32m+[0m return right first and last teams in DB for week 1[0m
 [0m[[0minfo[0m] [0m[32m+[0m return right first and last teams in DB for week 2[0m
 [0m[[0minfo[0m] [0m[32m+[0m return right first and last teams in DB for week 3[0m
@@ -21,8 +21,13 @@
 [0m[[0minfo[0m] [0m[32m+[0m return empty list when not a real team name[0m
 [0m[[0minfo[0m] [0m[32m+[0m return empty list if not a real week[0m
 [0m[[0minfo[0m] [0m [0m
+[0m[[0minfo[0m] [0mgetTeamStats for 2014 should[0m
+[0m[[0minfo[0m] [0m[32m+[0m return right first and last teams in DB for week 1[0m
+[0m[[0minfo[0m] [0m[32m+[0m return empty list when not a real team name[0m
+[0m[[0minfo[0m] [0m[32m+[0m return empty list if not a real week[0m
+[0m[[0minfo[0m] [0m [0m
 [0m[[0minfo[0m] [0m [0m
 [0m[[0minfo[0m] [0mTotal for specification StatisticalMethodsSpec[0m
-[0m[[0minfo[0m] [0m[34mFinished in 15 ms[0m[0m
-[0m[[0minfo[0m] [0m[34m19 examples, 0 failure, 0 error[0m[0m
+[0m[[0minfo[0m] [0m[34mFinished in 91 ms[0m[0m
+[0m[[0minfo[0m] [0m[34m22 examples, 0 failure, 0 error[0m[0m
 [0m[[0minfo[0m] [0m[0m

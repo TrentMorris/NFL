@@ -34,3 +34,12 @@ run
 test
 tst
 test
+clean
+compile
+test
+run
+test
+run
+test
+run
+test
