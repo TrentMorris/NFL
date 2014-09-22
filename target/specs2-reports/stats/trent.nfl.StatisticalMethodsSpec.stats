@@ -39,3 +39,9 @@
 </trent.nfl.StatisticalMethodsSpec-results>
 <trent.nfl.StatisticalMethodsSpec-stats timestamp="1410743672023"><stats expectations="38" successes="21" examples="38" failures="17" time="29"></stats></trent.nfl.StatisticalMethodsSpec-stats>
 <trent.nfl.StatisticalMethodsSpec-stats timestamp="1410744245187"><stats expectations="22" examples="22" successes="22" time="91"><trend><stats expectations="-16" successes="1" examples="-16" failures="-17" time="91"></stats></trend></stats></trent.nfl.StatisticalMethodsSpec-stats>
+<trent.nfl.StatisticalMethodsSpec-stats timestamp="1410746435914"><stats expectations="22" examples="22" successes="22" time="48"></stats></trent.nfl.StatisticalMethodsSpec-stats>
+<trent.nfl.StatisticalMethodsSpec-stats timestamp="1410746636741"><stats expectations="22" examples="22" successes="22" time="15"></stats></trent.nfl.StatisticalMethodsSpec-stats>
+<trent.nfl.StatisticalMethodsSpec-stats timestamp="1410798186988"><stats expectations="22" examples="22" successes="22" time="28"></stats></trent.nfl.StatisticalMethodsSpec-stats>
+<trent.nfl.StatisticalMethodsSpec-stats timestamp="1410982170742"><stats expectations="22" examples="22" successes="22" time="30"></stats></trent.nfl.StatisticalMethodsSpec-stats>
+<trent.nfl.StatisticalMethodsSpec-stats timestamp="1411008337033"><stats expectations="22" examples="22" successes="22" time="151"></stats></trent.nfl.StatisticalMethodsSpec-stats>
+<trent.nfl.StatisticalMethodsSpec-stats timestamp="1411015178721"><stats expectations="22" examples="22" successes="22" time="28"></stats></trent.nfl.StatisticalMethodsSpec-stats>

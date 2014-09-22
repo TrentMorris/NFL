@@ -1,6 +1,14 @@
 package trent.nfl
 
 object StatisticMethods {
+
+	def lastNGames2013(team: String, week: Int, lastNGames: Int, statsList: List[List[String]]): List[List[String]] = {
+		for (weekNumber <- List.range(0,lastNGames))  yield( get2013TeamStats(team,(week-weekNumber),statsList))
+	}
+
+	def lastNGames2014(team: String, week: Int, lastNGames: Int, statsList: List[List[String]]): List[List[String]] = {
+		for (weekNumber <- List.range(1,lastNGames+1)) yield (get2014TeamStats(team, week-weekNumber,statsList))
+	}
 	
 	def getTeamStats(team: String, week: Int, year: String, statsList: List[List[String]]): List[String] = {
 		if (year == "2013") get2013TeamStats(team, week, statsList)

@@ -5,21 +5,26 @@ import akka.actor._
 
 object NFLPredictor {
   def main(args: Array[String]) {
-    val system = ActorSystem("master")
-    val master = system.actorOf(Props(new Master()), name = "master")
+    // val system = ActorSystem("master")
+    // val master = system.actorOf(Props(new Master()), name = "master")
 
-    // val source = Source.fromURL(getClass.getResource("/nfl2013stats.csv"))
-    // val statsList = source.mkString.replace("\n",",").split(",").toList.sliding(35,35).toList
+    val runGA = true
+    if (runGA) {
+      val source = Source.fromURL(getClass.getResource("/nfl2013stats.csv"))
+      val statsList = source.mkString.replace("\n",",").split(",").toList.sliding(35,35).toList
+      val popSize = 100
+      val steel = StatisticMethods.lastNGames2013("Atlanta Falcons", 17, 16, statsList)
+      val w = WinnerCalculator.calculateWinner2013("Baltimore Ravens","Atlanta Falcons", Chromosome(), 10, 4, statsList)
+      println(w)
+      // master ! Season
+    } 
+    else {
+      val secondSource = Source.fromURL(getClass.getResource("/nfl2014stats.csv"))
+      val statsList2014 = secondSource.mkString.replace("\n", ",").split(",").toList.sliding(35, 35).toList
+      val steel = StatisticMethods.lastNGames2014("steelers", 5, 4, statsList2014)
 
-    val secondSource = Source.fromURL(getClass.getResource("/nfl2014stats.csv"))
-    val statsList2014 = secondSource.mkString.replace("\n",",").split(",").toList.sliding(35,35).toList
-
-    // for (game <- statsList){ for (stat <- game) print("\"" + stat + "\", " ); println("\n\n")}
-    // for (index <- 0 to statsList2014.size) if (statsList2014(index)(0) == "12/18/2014") println(index)
-    for (game <- statsList2014){ for (stat<- game)print("\"" + stat + "\","); println("")}
-
-    master ! Game("Steelers", "Bengals")
-
+      // master ! Game("Steelers", "Bengals")
+    }
   }
 }
 

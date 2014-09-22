@@ -18,8 +18,7 @@ object StatisticalMethodsSpec extends Specification {
     		val t1Stats = StatisticMethods.getTeamStats("New England Patriots", 2, "2013",statsList)
     		t1Stats === List("09/12/2013", "New England Patriots", "13", "9", "22%", "24", "54", "39", "19", "178", "0", "0", "1", "7", "30", "26:00", "46.7", "New York Jets", "10", "15", "33%", "32", "129", "35", "15", "189", "3", "1", "4", "25", "66", "34:00", "H", "11.5", "43.5")
     		val t2Stats = StatisticMethods.getTeamStats("Pittsburgh Steelers", 2, "2013",statsList)
-    		val test = List("09/16/2013", "Pittsburgh Steelers", "10", "14", "25%", "16", "43", "37", "20", "234", "1", "1", "2", "17", "29", "24:27", "46.7", "Cincinnati Bengals", "20", "22", "41%", "34", "127", "45", "25", "280", "0", "0", "0", "0", "84", "35:33", "V", "-6.5", "41")
-			t2Stats === test
+    		t2Stats === List("09/16/2013", "Pittsburgh Steelers", "10", "14", "25%", "16", "43", "37", "20", "234", "1", "1", "2", "17", "29", "24:27", "46.7", "Cincinnati Bengals", "20", "22", "41%", "34", "127", "45", "25", "280", "0", "0", "0", "0", "84", "35:33", "V", "-6.5", "41")
 		}	
 		"return right first and last teams in DB for week 3" >> {
     		val t1Stats = StatisticMethods.getTeamStats("Kansas City Chiefs", 3,"2013", statsList)

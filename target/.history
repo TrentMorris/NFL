@@ -44,3 +44,21 @@ test
 run
 test
 run
+test
+run
+test
+compile
+run
+compile
+run
+test
+git add .
+run
+compile
+run
+compile
+run
+compile
+run
+compile
+run
