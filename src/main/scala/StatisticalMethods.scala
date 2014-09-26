@@ -3,11 +3,21 @@ package trent.nfl
 object StatisticMethods {
 
 	def lastNGames2013(team: String, week: Int, lastNGames: Int, statsList: List[List[String]]): List[List[String]] = {
-		for (weekNumber <- List.range(0,lastNGames))  yield( get2013TeamStats(team,(week-weekNumber),statsList))
+		val games= for (weekNumber <- List.range(0,lastNGames))  yield( get2013TeamStats(team,(week-weekNumber),statsList))
+		if (games.contains(List())){ 
+			val newGames = games.filter(x => x != List())
+			get2013TeamStats(team, (week - lastNGames + 1), statsList) :: newGames
+		}
+		else games
 	}
 
 	def lastNGames2014(team: String, week: Int, lastNGames: Int, statsList: List[List[String]]): List[List[String]] = {
-		for (weekNumber <- List.range(1,lastNGames+1)) yield (get2014TeamStats(team, week-weekNumber,statsList))
+		val games = for (weekNumber <- List.range(1,lastNGames+1)) yield (get2014TeamStats(team, week-weekNumber,statsList))
+		if (games.contains(List())){ 
+			val newGames = games.filter(x => x != List())
+			get2014TeamStats(team, (week - lastNGames + 1), statsList) :: newGames
+		}
+		else games
 	}
 	
 	def getTeamStats(team: String, week: Int, year: String, statsList: List[List[String]]): List[String] = {

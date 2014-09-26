@@ -62,3 +62,11 @@ compile
 run
 compile
 run
+test
+clean
+test
+clean
+compile
+run
+compile
+run
