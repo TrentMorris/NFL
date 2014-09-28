@@ -16,13 +16,13 @@
 [0m[[0minfo[0m] [0mCompiling 1 Scala source to /home/trent/Dropbox/NFL/target/scala-2.9.2/classes...[0m
 [0m[[0mdebug[0m] [0mGetting compiler-interface from component compiler for Scala 2.9.2[0m
 [0m[[0mdebug[0m] [0mGetting compiler-interface from component compiler for Scala 2.9.2[0m
-[0m[[0mdebug[0m] [0mRunning cached compiler 7fa79bf8, interfacing (CompilerInterface) with Scala compiler version 2.9.2[0m
+[0m[[0mdebug[0m] [0mRunning cached compiler 3a274ba9, interfacing (CompilerInterface) with Scala compiler version 2.9.2[0m
 [0m[[0mdebug[0m] [0mCalling Scala compiler with arguments  (CompilerInterface):[0m
 [0m[[0mdebug[0m] [0m	-bootclasspath[0m
 [0m[[0mdebug[0m] [0m	/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/resources.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/rt.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/jsse.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/jce.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/charsets.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/rhino.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/lib/jfr.jar:/usr/lib/jvm/java-7-openjdk-amd64/jre/classes:/home/trent/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.9.2.jar[0m
 [0m[[0mdebug[0m] [0m	-classpath[0m
 [0m[[0mdebug[0m] [0m	/home/trent/Dropbox/NFL/target/scala-2.9.2/classes:/home/trent/.ivy2/cache/com.typesafe.akka/akka-actor/jars/akka-actor-2.0.2.jar[0m
-[0m[[0mdebug[0m] [0mScala compilation took 0.699409512 s[0m
+[0m[[0mdebug[0m] [0mScala compilation took 0.572202823 s[0m
 [0m[[0mdebug[0m] [0mNew invalidations:[0m
 [0m[[0mdebug[0m] [0m	Set()[0m
 [0m[[0mdebug[0m] [0mInitial set of included nodes: Set()[0m

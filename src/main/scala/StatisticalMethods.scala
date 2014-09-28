@@ -1,6 +1,6 @@
 package trent.nfl
 
-object StatisticMethods {
+trait StatisticMethods {
 
 	def lastNGames2013(team: String, week: Int, lastNGames: Int, statsList: List[List[String]]): List[List[String]] = {
 		val games= for (weekNumber <- List.range(0,lastNGames))  yield( get2013TeamStats(team,(week-weekNumber),statsList))
