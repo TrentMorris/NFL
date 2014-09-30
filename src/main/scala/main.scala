@@ -14,7 +14,7 @@ object NFLPredictor extends WinnerCalculator {
       val statsList = source.mkString.replace("\n",",").split(",").toList.sliding(35,35).toList
       val popSize = 100
 
-      master ! Season(1,1, Chromosome.apply(), statsList)
+      master ! Season(1,17,3, Chromosome.apply(), statsList)
     } 
 
     else {
