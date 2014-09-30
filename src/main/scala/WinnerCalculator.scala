@@ -1,22 +1,23 @@
 package trent.nfl
 
+import scala.io.Source
 
 trait WinnerCalculator extends StatisticMethods{
 
-	def getMatchups(stats: List[List[String]]): List[(String, String)] = {
-		val matchups = for (team <- stats) yield List(team(1), team(17))
+	def getMatchups(weekOfSeason: List[List[String]]): List[(String, String)] = {
+		val matchups = for (team <- weekOfSeason) yield List(team(1), team(17))
 		val orderedMatches = (matchups.map(_.sorted)).sortBy(x => x(1)).distinct
 		orderedMatches.map(x => (x(0), x(1)))
 	}
 
-	def calculateWinner(t1: String, t2: String, chromo: Chromosome, week: Int, lastNGames: Int, statsList: List[List[String]], year: String): String = {
-		if (year == "2013") calculateWinner2013(t1, t2, chromo, week, lastNGames,statsList)
-		else if (year == "2014") calculateWinner2014(t1, t2, chromo, week, lastNGames,statsList)
+	def calculateWinner(t1: String, t2: String, chromo: Chromosome, week: Int, lastNGames: Int, year: String): String = {
+		if (year == "2013") calculateWinner2013(t1, t2, chromo, week, lastNGames)
+		else if (year == "2014") calculateWinner2014(t1, t2, chromo, week, lastNGames)
 		else "Not a real year"
 	}
-	def calculateWinner2013(t1: String, t2: String, chromo: Chromosome, week: Int, lastNGames: Int, statsList: List[List[String]]): String = {
-		val t1Stats = lastNGames2013(t1, week, lastNGames, statsList)
-		val t2Stats = lastNGames2013(t2, week, lastNGames, statsList)
+	def calculateWinner2013(t1: String, t2: String, chromo: Chromosome, week: Int, lastNGames: Int): String = {
+		val t1Stats = lastNGames2013(t1, week, lastNGames)
+		val t2Stats = lastNGames2013(t2, week, lastNGames)
 		val t1NewStats = t1Stats.map(game => modifyStats(game, chromo))
 		val t2NewStats = t2Stats.map(game => modifyStats(game, chromo))
 		val teamOneScore = calculateTotalTeamScore(t1NewStats)
@@ -26,9 +27,9 @@ trait WinnerCalculator extends StatisticMethods{
 		else if (teamTwoScore > teamOneScore) t2
 		else t1
 	}
-	def calculateWinner2014(t1: String, t2: String, chromo: Chromosome, week: Int, lastNGames: Int, statsList: List[List[String]]): String = {
-		val t1Stats = lastNGames2014(t1, week, lastNGames, statsList)
-		val t2Stats = lastNGames2014(t2, week, lastNGames, statsList)
+	def calculateWinner2014(t1: String, t2: String, chromo: Chromosome, week: Int, lastNGames: Int): String = {
+		val t1Stats = lastNGames2014(t1, week, lastNGames)
+		val t2Stats = lastNGames2014(t2, week, lastNGames)
 		val t1NewStats = t1Stats.map(game => modifyStats(game, chromo))
 		val t2NewStats = t2Stats.map(game => modifyStats(game, chromo))
 		val teamOneScore = calculateTotalTeamScore(t1NewStats)
