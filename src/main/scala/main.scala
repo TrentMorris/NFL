@@ -14,15 +14,14 @@ object NFLPredictor extends WinnerCalculator {
       val statsList = source.mkString.replace("\n",",").split(",").toList.sliding(35,35).toList
       val popSize = 100
 
-      master ! Season(1, 17, statsList)
+      master ! Season(1,1, Chromosome.apply(), statsList)
     } 
-    
+
     else {
       val secondSource = Source.fromURL(getClass.getResource("/nfl2014stats.csv"))
       val statsList2014 = secondSource.mkString.replace("\n", ",").split(",").toList.sliding(35, 35).toList
       val steel = lastNGames2014("steelers", 5, 4, statsList2014)
 
-      // master ! Game("Steelers", "Bengals")
     }
   }
 }

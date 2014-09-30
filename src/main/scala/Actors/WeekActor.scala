@@ -8,6 +8,9 @@ import akka.util.duration._
 class WeekActor extends Actor with WinnerCalculator {
 
 	def receive = {
-		case w@Week(_,_) => println(w.stats(1))
+		case w@Week(_,_) => {
+			val matchups = getMatchups(w.stats)
+			for (game <- matchups) println(game)
+		}
 	}
 }

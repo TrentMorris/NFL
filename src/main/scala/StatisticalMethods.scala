@@ -21,7 +21,7 @@ trait StatisticMethods {
 	}
 
 	def getNthWeek2014(week: Int, statsList: List[List[String]]): List[List[String]] = {
-		if (week ==1) 		statsList.slice(WeekIndexes2014.weekOne, WeekIndexes2014.weekTwo)
+		if 		(week ==1) 	statsList.slice(WeekIndexes2014.weekOne, WeekIndexes2014.weekTwo)
 		else if (week == 2) statsList.slice(WeekIndexes2014.weekTwo,  WeekIndexes2014.weekThree)
 		else if (week == 3) statsList.slice(WeekIndexes2014.weekThree, WeekIndexes2014.weekFour)
 		else if (week == 4) statsList.slice(WeekIndexes2014.weekFour,  WeekIndexes2014.weekFive)
@@ -41,7 +41,7 @@ trait StatisticMethods {
 		else List(List())
 	}
 	def getNthWeek2013(week: Int, statsList: List[List[String]]): List[List[String]] = {
-		if (week ==1) 		statsList.slice(WeekIndexes2013.weekOne, WeekIndexes2013.weekTwo)
+		if 		(week ==1)	statsList.slice(WeekIndexes2013.weekOne, WeekIndexes2013.weekTwo)
 		else if (week == 2) statsList.slice(WeekIndexes2013.weekTwo,  WeekIndexes2013.weekThree)
 		else if (week == 3) statsList.slice(WeekIndexes2013.weekThree, WeekIndexes2013.weekFour)
 		else if (week == 4) statsList.slice(WeekIndexes2013.weekFour,  WeekIndexes2013.weekFive)
