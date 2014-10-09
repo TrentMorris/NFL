@@ -2,27 +2,33 @@ package trent.nfl
 import scala.io.Source
 
 trait StatisticMethods {
-	// Can probably do val here and then not need so much dependency injection
+
 	val source = Source.fromURL(getClass.getResource("/nfl2013stats.csv"))
     val statsList2013 = source.mkString.replace("\n",",").split(",").toList.sliding(35,35).toList
 
     val secondSource = Source.fromURL(getClass.getResource("/nfl2014stats.csv"))
     val statsList2014 = secondSource.mkString.replace("\n", ",").split(",").toList.sliding(35, 35).toList
 
+	def getTeamStats(team: String, week: Int, year: String): List[String] = {
+		if (year == "2013") get2013TeamStats(team, week)
+		else if (year == "2014") get2014TeamStats(team, week)
+		else List()
+	}
+
 	def lastNGames2013(team: String, week: Int, lastNGames: Int): List[List[String]] = {
-		val games= for (weekNumber <- List.range(0,lastNGames))  yield( get2013TeamStats(team,(week-weekNumber)))
+		val games: List[List[String]] = for (weekNumber <- List.range(0,lastNGames))  yield( get2013TeamStats(team,(week-weekNumber)))
 		if (games.contains(List())){ 
 			val newGames = games.filter(x => x != List())
-			get2013TeamStats(team, (week - lastNGames + 1)) :: newGames
+			get2013TeamStats(team, (week - lastNGames)) :: newGames
 		}
 		else games
 	}
 
 	def lastNGames2014(team: String, week: Int, lastNGames: Int): List[List[String]] = {
 		val games = for (weekNumber <- List.range(1,lastNGames+1)) yield (get2014TeamStats(team, week-weekNumber))
-		if (games.contains(List())){ 
+		if (games.contains(List())){
 			val newGames = games.filter(x => x != List())
-			get2014TeamStats(team, (week - lastNGames + 1)) :: newGames
+			get2014TeamStats(team, (week - lastNGames)) :: newGames
 		}
 		else games
 	}
@@ -68,12 +74,6 @@ trait StatisticMethods {
 		else List(List())
 	}
 
-	
-	def getTeamStats(team: String, week: Int, year: String): List[String] = {
-		if (year == "2013") get2013TeamStats(team, week)
-		else if (year == "2014") get2014TeamStats(team, week)
-		else List()
-	}
 
 	def get2014TeamStats(team: String, week: Int): List[String] = {
 		if (week == 1){
@@ -173,7 +173,7 @@ trait StatisticMethods {
 			else gamesInWeek(startIndex)
 	    }
 	    else if (week == 17){
-	   		val gamesInWeek =  statsList2014.slice(WeekIndexes2014.weekSeventeen, statsList2013.size)
+	   		val gamesInWeek =  statsList2014.slice(WeekIndexes2014.weekSeventeen, statsList2014.size)
 	    	val startIndex = gamesInWeek.indexWhere(x => x(1) == team)
 	    	if (startIndex == -1) List()
 			else gamesInWeek(startIndex)

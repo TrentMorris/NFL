@@ -11,10 +11,11 @@ class GameActor extends Actor with WinnerCalculator {
     	val guessedWinner = calculateWinner(t1,t2, ch, weekOfSeason, lastNGames, year)
     	val determineWinner = getTeamStats(t1,weekOfSeason,year)
     	val winner = if (determineWinner(2).toDouble > determineWinner(18).toDouble) t1
-    				else if (determineWinner(2).toDouble < determineWinner(18).toDouble) t2
-					else "Tie"
+    				  else if (determineWinner(2).toDouble < determineWinner(18).toDouble) t2
+					   else t1
     	println("%s versus %s : %s".format(t1,t2,winner))
-
+      if (guessedWinner == winner) true 
+      else false
     }
   }
 }

@@ -15,7 +15,6 @@ class Master extends Actor with WinnerCalculator{
   	Props[WeekActor].withRouter(SmallestMailboxRouter(17)), name = "WeekActor")
 
 	def receive =  {
-		// case g@Game(_,_,_,_,_,_,_) => GameActor ! g
 
 		case s@Season(_,_,_,_,_) => {
 			if (s.year == "2013"){

@@ -46,16 +46,17 @@ trait WinnerCalculator extends StatisticMethods{
 	}
 
 	def modifyStats(game: List[String], ch: Chromosome):List[Double] = {
-		for (index <- List.range(0,game.size)) 	yield {
+		val stats = for (index <- List.range(0,game.size)) 	yield {
 			if (index == 4 || index == 15 || index == 20 || index == 31) {
 				val percent = game(index).slice(0,2)
-				if (percent.contains("%")) percent(0).toDouble * ch.chromosome(index)
-				else percent.toDouble * ch.chromosome(index)
+				val check = if (percent.contains("%")) percent(0).toDouble else percent.toDouble
+				check * ch.chromosome(index)	
 			}
 			else if (index != 0 && index != 1 && index != 17 && index != 32){
-				game(index).toDouble * ch.chromosome(index)
+				if(game(index) == "" || game(index) == " ") 0.0 else game(index).toDouble * ch.chromosome(index)
 			}
 			else 0.0
-		}					
+		}
+		stats				
 	}
 }

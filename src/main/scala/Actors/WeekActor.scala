@@ -12,7 +12,7 @@ class WeekActor extends Actor with WinnerCalculator {
 	def receive = {
 		case w@Week(_,_,_,_,_) => {
 			val matchups = getMatchups(w.weekOfSeason)
-			for (game <- matchups) GameActor ! Game(game._1, game._2,w.ch, w.week, w.lastNGames, w.year)
+			for (game <- matchups) GameActor ! Game(game._1, game._2, w.ch, w.week, w.lastNGames, w.year)
 		}
 	}
 }
