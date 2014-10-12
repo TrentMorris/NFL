@@ -6,16 +6,26 @@ import akka.util.Duration
 import akka.util.duration._
 
 class GameActor extends Actor with WinnerCalculator {
+
+  var counter = 1
+
   def receive = {
-    case g@Game(t1: String, t2: String, ch: Chromosome, weekOfSeason: Int, lastNGames: Int, year: String) => {
+    case g@Game(chromosomeNumber: Int, t1: String, t2: String, ch: Chromosome, weekOfSeason: Int, lastNGames: Int, year: String) => {
+
+      // println("Counter " + counter)
+      // counter = counter + 1
+
+      val originalSender = sender
+
     	val guessedWinner = calculateWinner(t1,t2, ch, weekOfSeason, lastNGames, year)
     	val determineWinner = getTeamStats(t1,weekOfSeason,year)
     	val winner = if (determineWinner(2).toDouble > determineWinner(18).toDouble) t1
-    				  else if (determineWinner(2).toDouble < determineWinner(18).toDouble) t2
-					   else t1
-    	println("%s versus %s : %s".format(t1,t2,winner))
-      if (guessedWinner == winner) true 
-      else false
+    				       else if (determineWinner(2).toDouble < determineWinner(18).toDouble) t2
+					         else t1
+
+      val correctOrNot = if (guessedWinner == winner) true  else false
+
+      originalSender ! GAGameResult(chromosomeNumber, correctOrNot)
     }
   }
 }
