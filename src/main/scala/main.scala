@@ -14,31 +14,28 @@ object NFLPredictor extends WinnerCalculator {
     val master = system.actorOf(Props(new Master()), name = "master")
 
     val runGA = true
+    val popSize = 100
 
   // Gives all chromosomes at once. and could sort and maybe get data back? Or just do one chromosome at a time
-    // scala> (res14,res15,res18).zipped.toList
+  // scala> (res14,res15,res18).zipped.toList
 
-    implicit val timeout = Timeout(5 seconds)
+    implicit val timeout = Timeout(10 seconds)
 
     if (runGA) {
-      val popSize = 100
-
-      for (chromsomeNumber <- List.range(1,2)) {
+      for (chromsomeNumber <- List.range(0,popSize)) {
         master ! Season(chromsomeNumber, 1,17,3, Chromosome.apply(),"2013")
       }
 
-      Thread.sleep(10000)
-      println("Done sleeping")
-      // var future = master ? GiveResults
-      // var result = Await.result(future, timeout.duration).asInstanceOf[List[(Int, Boolean)]]
+      var future = master ? GiveResults
+      var result = Await.result(future, timeout.duration).asInstanceOf[List[(Int, Int)]]
 
-      // while (result.size != 16){
-      //     future = master ? GiveResults
-      //     result = Await.result(future, timeout.duration).asInstanceOf[List[(Int, Boolean)]]
-      //     // println(result.size)
-      //   }
-      //   println(result)
-      system.shutdown()
+      while (result.size != 25600){
+          future = master ? GiveResults
+          result = Await.result(future, timeout.duration).asInstanceOf[List[(Int, Int)]]
+      }
+
+      val chromoRight = resultsToAmountRight(result)
+      println(chromoRight)
 
     } 
 
@@ -47,6 +44,7 @@ object NFLPredictor extends WinnerCalculator {
       val steel = lastNGames2014("steelers", 5, 4)
 
     }
+    system.shutdown()
   }
 }
 

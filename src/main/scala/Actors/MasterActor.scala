@@ -12,7 +12,7 @@ import akka.dispatch.Await
 case class Season(chromosomeNumber: Int, startWeek: Int, endWeek: Int, lastNGames: Int, ch: Chromosome, year: String) // Season will need chromosome eventually along with week
 case class Week(chromosomeNumber: Int, ch: Chromosome,  week: Int, lastNGames: Int, weekOfSeason: List[List[String]], year: String)
 case class Game(chromosomeNumber: Int, t1: String, t2: String, ch: Chromosome, week: Int, lastNGames: Int,  year: String)
-case class GAGameResult(chromosomeNumber: Int, correct: Boolean)
+case class GAGameResult(chromosomeNumber: Int, correct: Int)
 case object GiveResults
 
 class Master extends Actor with WinnerCalculator{
@@ -20,13 +20,13 @@ class Master extends Actor with WinnerCalculator{
   implicit val timeout = Timeout(10 seconds)
 
   val WeekActor = context.actorOf(
-  	Props[WeekActor].withRouter(SmallestMailboxRouter(170)), name = "WeekActor")
+  	Props[WeekActor], name = "WeekActor")
 
 	def receive =  {
 		case GiveResults => {
 			val originalSender = sender
 			val gameList = WeekActor ask GiveResults
-			val result = Await.result(gameList, timeout.duration).asInstanceOf[List[(Int, Boolean)]]
+			val result = Await.result(gameList, timeout.duration).asInstanceOf[List[(Int, Int)]]
 			originalSender ! result
 		}
 

@@ -7,9 +7,9 @@ import akka.util.duration._
 
 class WeekActor extends Actor with WinnerCalculator {
  	val GameActor = context.actorOf(
-    	Props[GameActor].withRouter(SmallestMailboxRouter(160)), name = "GameActor")
+    	Props[GameActor], name = "GameActor")
 
- 	var gameList: List[(Int, Boolean)] = List()
+ 	var gameList: List[(Int, Int)] = List()
 
 	def receive = {
 		case w@Week(_,_,_,_,_,_) => {
@@ -18,14 +18,11 @@ class WeekActor extends Actor with WinnerCalculator {
 		}
 
 		case ga@GAGameResult(_,_) => {
-			println(ga)
 			gameList = (ga.chromosomeNumber, ga.correct) :: gameList
-			println(gameList.size)
 		}
 
 		case GiveResults => {
-			print("")
-			//sender ! gameList	
+			sender ! gameList
 		}
 	}
 }
