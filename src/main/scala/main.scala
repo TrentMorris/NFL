@@ -15,32 +15,38 @@ object NFLPredictor extends WinnerCalculator {
 
     val runGA = true
     val popSize = 100
+    val endWeek = 17
 
-  // Gives all chromosomes at once. and could sort and maybe get data back? Or just do one chromosome at a time
-  // scala> (res14,res15,res18).zipped.toList
+    // Gives all chromosomes at once. and could sort and maybe get data back? Or just do one chromosome at a time
+    // scala> (res14,res15,res18).zipped.toList
 
     implicit val timeout = Timeout(10 seconds)
 
     if (runGA) {
-      for (chromsomeNumber <- List.range(0,popSize)) {
-        master ! Season(chromsomeNumber, 1,17,3, Chromosome.apply(),"2013")
-      }
 
-      var future = master ? GiveResults
-      var result = Await.result(future, timeout.duration).asInstanceOf[List[(Int, Int)]]
+      for (genNumber <- List.range(1, 21)) {
+        println("Generation " + genNumber)
+        for (chromsomeNumber <- List.range(0, popSize)) {
+          master ! Season(chromsomeNumber, 1, endWeek, 3, Chromosome.allZeroChromosome(), "2013")
+        }
 
-      while (result.size != 25600){
+        var future = master ? GiveResults
+        var result = Await.result(future, timeout.duration).asInstanceOf[List[(Int, Int)]]
+
+        while (result.size != (25600 )) {
           future = master ? GiveResults
           result = Await.result(future, timeout.duration).asInstanceOf[List[(Int, Int)]]
+        }
+
+        val chromoRight = resultsToAmountRight(result)
+        println(chromoRight)
+        master ! ClearGameList
+
+
       }
-
-      val chromoRight = resultsToAmountRight(result)
-      println(chromoRight)
-
     } 
-
     else {
-      master ! Season(5, 1,1,3, Chromosome.apply(),"2014")
+      master ! Season(5, 1, 1, 3, Chromosome.apply(), "2014")
       val steel = lastNGames2014("steelers", 5, 4)
 
     }

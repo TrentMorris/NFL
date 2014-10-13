@@ -14,4 +14,7 @@ object Chromosome{
 	def basicChromosome() = {
 		new Chromosome(List.fill(35)(1.toFloat))
 	}
+	def allZeroChromosome() = {
+		new Chromosome(List.fill(35)(0.toFloat))
+	}
 }

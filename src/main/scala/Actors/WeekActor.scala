@@ -24,5 +24,6 @@ class WeekActor extends Actor with WinnerCalculator {
 		case GiveResults => {
 			sender ! gameList
 		}
+		case ClearGameList => gameList = List()
 	}
 }

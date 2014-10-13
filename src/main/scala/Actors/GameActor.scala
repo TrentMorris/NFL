@@ -17,8 +17,8 @@ class GameActor extends Actor with WinnerCalculator {
       val winner = if (determineWinner(2).toDouble > determineWinner(18).toDouble) t1
                    else if (determineWinner(2).toDouble < determineWinner(18).toDouble) t2
                    else t1
-
       val correctOrNot = if (guessedWinner == winner) 1  else 0
+      // println("Team1 - %s\nTeam2 - %s\nPredicted - %s\nActual - %s\nValue - %d\n\n".format(t1,t2,guessedWinner, winner, correctOrNot))
       originalSender ! GAGameResult(chromosomeNumber, correctOrNot)
     }
   }

@@ -14,6 +14,7 @@ case class Week(chromosomeNumber: Int, ch: Chromosome,  week: Int, lastNGames: I
 case class Game(chromosomeNumber: Int, t1: String, t2: String, ch: Chromosome, week: Int, lastNGames: Int,  year: String)
 case class GAGameResult(chromosomeNumber: Int, correct: Int)
 case object GiveResults
+case object ClearGameList
 
 class Master extends Actor with WinnerCalculator{
   
@@ -38,5 +39,6 @@ class Master extends Actor with WinnerCalculator{
 			}
 			else println("wrong year")
 		}
+		case c@ClearGameList => WeekActor ! c
 	}
 }
