@@ -24,16 +24,20 @@ object NFLPredictor extends WinnerCalculator {
 
     if (runGA) {
 
-      for (genNumber <- List.range(1, 21)) {
+      val pop = Population(5)(1)
+      pop.population.foreach(x => println(x.chromosome))
+
+      var genNumber = 0
+      while(genNumber < 3){
+        genNumber += 1
         println("Generation " + genNumber)
         for (chromsomeNumber <- List.range(0, popSize)) {
-          master ! Season(chromsomeNumber, 1, endWeek, 3, Chromosome.allZeroChromosome(), "2013")
+          master ! Season(chromsomeNumber, 1, endWeek, 3, Chromosome.basicChromosome(), "2013")
         }
 
         var future = master ? GiveResults
         var result = Await.result(future, timeout.duration).asInstanceOf[List[(Int, Int)]]
-
-        while (result.size != (25600 )) {
+        while (result.size != (25600)) {
           future = master ? GiveResults
           result = Await.result(future, timeout.duration).asInstanceOf[List[(Int, Int)]]
         }
@@ -42,11 +46,10 @@ object NFLPredictor extends WinnerCalculator {
         println(chromoRight)
         master ! ClearGameList
 
-
       }
     } 
     else {
-      master ! Season(5, 1, 1, 3, Chromosome.apply(), "2014")
+      master ! Season(5, 1, 1, 3, Chromosome.apply(100), "2014")
       val steel = lastNGames2014("steelers", 5, 4)
 
     }

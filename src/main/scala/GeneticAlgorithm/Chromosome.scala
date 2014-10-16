@@ -4,11 +4,16 @@ import scala.util.Random
 
 class Chromosome(chromo: List[Float]){
 	val chromosome = chromo
+
+	override def toString = chromosome.mkString
 }
 
 object Chromosome{
-	def apply() = {
-		new Chromosome(List.fill(35)(Random.nextFloat))
+
+	// 18 is beginning of defense
+
+	def apply(size: Int) = {
+		new Chromosome(List.fill(size)(Random.nextFloat))
 	}
 
 	def basicChromosome() = {

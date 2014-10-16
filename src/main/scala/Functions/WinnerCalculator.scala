@@ -59,11 +59,16 @@ trait WinnerCalculator extends StatisticMethods{
 				val check = if (percent.contains("%")) percent(0).toDouble else percent.toDouble
 				check * ch.chromosome(index)	
 			}
-			else if (index != 0 && index != 1 && index != 17 && index != 32){
+			else if (index != 0 && index != 1 && index != 16 && index != 17 && index != 32 && index != 33 && index != 34){
 				if(game(index) == "" || game(index) == " ") 0.0 else game(index).toDouble * ch.chromosome(index)
+			}
+			else if (index == 32){
+				if (game(index) == "H") 69.0 * ch.chromosome(index)
+				else 0.0
 			}
 			else 0.0
 		}
+
 		stats				
 	}
 }
