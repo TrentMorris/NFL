@@ -11,15 +11,16 @@ trait GeneticAlgorithmScala {
 
 	def indexesOfBest(numberOfBest: Int, values: List[(Int, Int)]): List[Int] = {
 		if (numberOfBest >= values.size) return List.range(0, values.size)
-		println("new indexesOfBest")
 		def go( sizeSoFar: Int, values: List[(Int, Int)], accum: List[Int]): List[Int] = {
 			if (sizeSoFar == numberOfBest) return accum
-			val maxCh = values.slice(0, (numberOfBest- sizeSoFar)).maxBy(_._2)
-			val index = values.indexOf(maxCh)
-			val newList = (values diff List(maxCh)) ::: List(maxCh)
-			println(values.slice(0, (numberOfBest- sizeSoFar)) + "  " + index)
 
-			go(sizeSoFar +1, newList, values.indexOf(maxCh) :: accum)
+			val maxCh = values.maxBy(_._2)
+			val index = values.indexOf(maxCh)
+			val newList = values diff List(maxCh)
+
+			println(values + "  " + index)
+
+			go(sizeSoFar +1, newList, maxCh._1 :: accum)
 		}
 		go(0, values, List())
 	}

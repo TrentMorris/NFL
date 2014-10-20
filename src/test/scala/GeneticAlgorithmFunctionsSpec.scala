@@ -20,7 +20,7 @@ object GeneticAlgorithmScalaSpec extends Specification with WinnerCalculator wit
     "getTopFromPopulation" should {
         "have the correct chromsomes" >> {
             val numberOfBest = 2
-            val values = List((1,1), (1,2), (1,3), (1,4), (1,5),(1,6)) 
+            val values = List((0,1), (1,2), (2,3), (3,4), (4,5),(5,6)) 
             val pop = Population.apply(10)(35)
             getTopFromPopulation(numberOfBest, values, pop) === List(pop.population(4), pop.population(5))
         }
@@ -28,16 +28,16 @@ object GeneticAlgorithmScalaSpec extends Specification with WinnerCalculator wit
     "indexesOfBest" should {
         "get the best values from a List of tuples by the second index" >> {
             val numberOfBest = 5
-            val values = List((0,6), (0,2), (0,3), (0,4), (0,5),(0,6))
-            indexesOfBest(numberOfBest, values) === List(1,2,3,4,0,5)
+            val values = List((0,6), (1,2), (2,3), (3,4), (4,5),(5,6))
+            indexesOfBest(numberOfBest, values) === List(2,3,4,5,0)
         }
         "return all indexes if numberOfBest is greater than List size" >> {
-            val values = List((0,1), (0,2), (0,3), (0,4))
+            val values = List((0,1), (1,2), (2,3), (3,4))
             val numberOfBest = 5
             indexesOfBest(numberOfBest, values) === List(0,1,2,3)
         }
         "return all indexes if numberOfBest is equal to List size" >> {
-            val values = List((0,1), (0,2), (0,3), (0,4),(4,5))
+            val values = List((0,1), (1,2), (2,3), (3,4),(4,5))
             val numberOfBest = 5
             indexesOfBest(numberOfBest, values) === List(0,1,2,3,4)
         }
