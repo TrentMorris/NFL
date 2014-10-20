@@ -8,7 +8,7 @@ import akka.pattern.ask
 import akka.util.Timeout
 import akka.util.duration._
 
-object NFLPredictor extends WinnerCalculator {
+object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
   def main(args: Array[String]) {
     val system = ActorSystem("master")
     val master = system.actorOf(Props(new Master()), name = "master")
@@ -24,15 +24,14 @@ object NFLPredictor extends WinnerCalculator {
 
     if (runGA) {
 
-      val pop = Population(5)(1)
-      pop.population.foreach(x => println(x.chromosome))
+      var population = firstGenerationPopulation(100,35) 
 
       var genNumber = 0
       while(genNumber < 3){
         genNumber += 1
         println("Generation " + genNumber)
         for (chromsomeNumber <- List.range(0, popSize)) {
-          master ! Season(chromsomeNumber, 1, endWeek, 3, Chromosome.basicChromosome(), "2013")
+          master ! Season(chromsomeNumber, 1, endWeek, 3, Chromosome.basicChromosome(35), "2013")
         }
 
         var future = master ? GiveResults
@@ -44,6 +43,10 @@ object NFLPredictor extends WinnerCalculator {
 
         val chromoRight = resultsToAmountRight(result)
         println(chromoRight)
+
+        population = newPopulationFromOld(population, population.population.slice(0,10), popSize)
+        // population.population.foreach(println)
+
         master ! ClearGameList
 
       }

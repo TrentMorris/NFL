@@ -4,12 +4,6 @@ import scala.io.Source
 
 trait WinnerCalculator extends StatisticMethods{
 
-	def resultsToAmountRight(result: List[(Int, Int)]) = {
-		val sortedResult = result.sortBy(_._1)
-		val slidingResult = sortedResult.sliding(256,256).toList
-		val amountRight = slidingResult.map(x => x.foldLeft(0)((b,a) => b + a._2))
-		(List.range(0,100), amountRight).zipped.toList
-	}
 
 	def getMatchups(weekOfSeason: List[List[String]]): List[(String, String)] = {
 		val matchups = for (team <- weekOfSeason) yield List(team(1), team(17))
@@ -63,8 +57,8 @@ trait WinnerCalculator extends StatisticMethods{
 				if(game(index) == "" || game(index) == " ") 0.0 else game(index).toDouble * ch.chromosome(index)
 			}
 			else if (index == 32){
-				if (game(index) == "H") 69.0 * ch.chromosome(index)
-				else 0.0
+				if (game(index) == "H") 100.0 * ch.chromosome(index)
+				else -100.0 * ch.chromosome(index)
 			}
 			else 0.0
 		}

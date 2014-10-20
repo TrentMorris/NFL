@@ -5,7 +5,9 @@ import scala.util.Random
 class Chromosome(chromo: List[Float]){
 	val chromosome = chromo
 
-	override def toString = chromosome.mkString
+	override def toString = chromosome.mkString(", ")
+
+	def size: Int = chromosome.size
 }
 
 object Chromosome{
@@ -13,13 +15,17 @@ object Chromosome{
 	// 18 is beginning of defense
 
 	def apply(size: Int) = {
-		new Chromosome(List.fill(size)(Random.nextFloat))
+		val floatList = for (index <- List.range(0,size))yield {
+			if (index < 18) Random.nextFloat
+			else -(Random.nextFloat)
+		}
+		new Chromosome(floatList)
 	}
 
-	def basicChromosome() = {
-		new Chromosome(List.fill(35)(1.toFloat))
+	def basicChromosome(size:Int) = {
+		new Chromosome(List.fill(size)(1.toFloat))
 	}
-	def allZeroChromosome() = {
-		new Chromosome(List.fill(35)(0.toFloat))
+	def allZeroChromosome(size: Int) = {
+		new Chromosome(List.fill(size)(0.toFloat))
 	}
 }

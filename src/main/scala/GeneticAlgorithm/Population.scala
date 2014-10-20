@@ -3,9 +3,10 @@ package trent.nfl
 import scala.util.Random
 
 class Population(pop: List[Chromosome]){
-	val population = pop
+	val population: List[Chromosome] = pop
+	def size = population.size
 
-	// override def toString = population.mkString
+	override def toString = population.mkString("\n")
 }
 
 object Population{
