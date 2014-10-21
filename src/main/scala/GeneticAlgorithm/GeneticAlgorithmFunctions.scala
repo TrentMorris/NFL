@@ -17,30 +17,42 @@ trait GeneticAlgorithmScala {
 			val maxCh = values.maxBy(_._2)
 			val index = values.indexOf(maxCh)
 			val newList = values diff List(maxCh)
-
-			println(values + "  " + index)
-
 			go(sizeSoFar +1, newList, maxCh._1 :: accum)
 		}
 		go(0, values, List())
 	}
 
+	def getBestChromosomeFromPopulation(values: List[(Int, Int)], pop: Population): Chromosome = getChromosomeFromPopulation(pop, values.maxBy(_._2)._1)
+
+	def findMaxValue(values: List[(Int, Int)]): Int = values.maxBy(_._2)._2
+
 	def newPopulationFromOld(pop: Population, bestPop: List[Chromosome], popSize: Int): Population = {
 		import scala.util.Random
 
-		val bestBreedWithRandomPopulation = for (bestCh <- bestPop) yield {
-			val index = Random.nextInt(pop.size)
-			val ch = breedTwoChromosomes(bestCh, pop.population(index))
-			breedTwoChromosomes(ch, pop.population(index))
-		}
-		val remainingNeeded = popSize - bestBreedWithRandomPopulation.size 
+		val randomBredWithRandomNumber = (0.3 * popSize).toInt 
+
+		val bestBreedWithRandomPopulation = for (bestCh <- bestPop) // 10%
+			yield {
+				val index = Random.nextInt(pop.size)
+				breedTwoChromosomes(bestCh, pop.population(index))
+			}
+
+		val randomBredWithRandom = for (x <- List.range(0,randomBredWithRandomNumber)) // 30%
+			yield {
+				val firstIndex = Random.nextInt(pop.size)
+				val secondIndex = Random.nextInt(pop.size)
+				breedTwoChromosomes(pop.population(firstIndex), pop.population(secondIndex))
+			}
+		val allButRandom: List[Chromosome] = bestPop ::: randomBredWithRandom ::: bestBreedWithRandomPopulation
+
+		val remainingNeeded = popSize - allButRandom.size 
 		val finalPop = for (x <- List.range(0, remainingNeeded)) yield Chromosome.apply(35)
-		new Population(finalPop ::: bestBreedWithRandomPopulation)
+		new Population(allButRandom ::: finalPop)
 		
 	}
 
 	def breedTwoChromosomes(ch1: Chromosome, ch2: Chromosome): Chromosome = {
-		val chList = for (index <- List.range(0, ch1.size))yield {
+		val chList = for (index <- List.range(0, ch1.size)) yield {
 			if (Random.nextBoolean) ch1.chromosome(index)
 			else ch2.chromosome(index)
 		}

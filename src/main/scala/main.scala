@@ -15,23 +15,30 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
 
     val runGA = true
     val popSize = 100
+    val bestPopSize = 10
     val endWeek = 17
-
-    // Gives all chromosomes at once. and could sort and maybe get data back? Or just do one chromosome at a time
-    // scala> (res14,res15,res18).zipped.toList
 
     implicit val timeout = Timeout(10 seconds)
 
     if (runGA) {
 
       var population = firstGenerationPopulation(100,35) 
-
       var genNumber = 0
-      while(genNumber < 3){
+      var bestNumber = 0
+      var bestChromo = getChromosomeFromPopulation(population, 0)
+      var startTime = System.currentTimeMillis
+
+      while(bestNumber < 210){
         genNumber += 1
-        println("Generation " + genNumber)
+        if (genNumber %10 == 0){
+          println("Generation " + genNumber + " || Best score so far: " + bestNumber)
+          val stopTime = System.currentTimeMillis
+          println("\t10 generations took " + ((stopTime - startTime) / 1000) + " seconds")
+          println("\t" + bestChromo + "\n\n")
+          startTime = System.currentTimeMillis
+        }
         for (chromsomeNumber <- List.range(0, popSize)) {
-          master ! Season(chromsomeNumber, 1, endWeek, 3, Chromosome.basicChromosome(35), "2013")
+          master ! Season(chromsomeNumber, 1, endWeek, 3, population.population(chromsomeNumber), "2013")
         }
 
         var future = master ? GiveResults
@@ -41,18 +48,19 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
           result = Await.result(future, timeout.duration).asInstanceOf[List[(Int, Int)]]
         }
 
-        val chromoRight = resultsToAmountRight(result)
-        println(chromoRight)
-
-        population = newPopulationFromOld(population, population.population.slice(0,10), popSize)
-        // population.population.foreach(println)
-
         master ! ClearGameList
+        val chromoRight = resultsToAmountRight(result)
+        bestNumber = findMaxValue(chromoRight)
+        bestChromo = getBestChromosomeFromPopulation(chromoRight, population)
+
+        val bestPopulation = getTopFromPopulation(bestPopSize, chromoRight, population)
+        population = newPopulationFromOld(population, bestPopulation, popSize)
 
       }
+      println("We are done " + bestNumber)
     } 
     else {
-      master ! Season(5, 1, 1, 3, Chromosome.apply(100), "2014")
+      master ! Season(5, 1, 1, 3, Chromosome.apply(35), "2014")
       val steel = lastNGames2014("steelers", 5, 4)
 
     }
