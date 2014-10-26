@@ -6,6 +6,16 @@ import scala.io.Source
 object GeneticAlgorithmScalaSpec extends Specification with WinnerCalculator with GeneticAlgorithmScala {
 	val population = Population(1)(35)
 
+    "newPopulationFromOld" should {
+        val pop = Population.apply(100)(35)
+        val bestPop = Population.apply(10)(35).population
+        "have certain chromosomes carried over" >> {
+            val newPop = newPopulationFromOld(pop, bestPop)
+            for (ch <- bestPop) newPop.population must contain(ch)
+            newPop.size === pop.size
+        }
+    }
+
 	"Chromosome.apply" should {
 		"have values between -1 and 1 depending on index" >> {
 			val ch = Chromosome(35)

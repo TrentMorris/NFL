@@ -7,8 +7,8 @@ resolvers += "Typesafe Repository" at "http://repo.typesafe.com/typesafe/release
 scalaVersion := "2.9.2"
 
 libraryDependencies ++= Seq(
-	"com.typesafe.akka" % "akka" % "2.0.2",
-	"com.typesafe.akka" % "akka-actor" % "2.0.2",
-	"org.specs2" %% "specs2" % "1.12.4.1" % "test")
+	"org.specs2" %% "specs2" % "1.12.4.1" % "test",
+	"com.typesafe.akka" % "akka-actor"        % "2.0.3" withSources,
+  	"com.typesafe.akka" % "akka-testkit"      % "2.0.3" % "test" withSources)
 
 resolvers ++= Seq("snapshots", "releases").map(Resolver.sonatypeRepo)

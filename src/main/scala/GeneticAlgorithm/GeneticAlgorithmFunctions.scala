@@ -26,8 +26,9 @@ trait GeneticAlgorithmScala {
 
 	def findMaxValue(values: List[(Int, Int)]): Int = values.maxBy(_._2)._2
 
-	def newPopulationFromOld(pop: Population, bestPop: List[Chromosome], popSize: Int): Population = {
+	def newPopulationFromOld(pop: Population, bestPop: List[Chromosome]): Population = {
 		import scala.util.Random
+		val popSize = pop.population.size
 
 		val randomBredWithRandomNumber = (0.3 * popSize).toInt 
 
