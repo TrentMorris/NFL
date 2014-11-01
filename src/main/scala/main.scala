@@ -9,9 +9,11 @@ import akka.util.Timeout
 import akka.util.duration._
 
 /*
+Optimizing branch
 Idea: Instead of always modifying stats just do it once for each chromosome basically. So take whole game list and run it through modify stats 
 and get "score" for that week. That way not recalculating over and over and just Have List[List[(teamName, weekScore)]] which would pertain to that 
 chromosome. Which can easily grab then
+
 */
 object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
   def main(args: Array[String]) {
