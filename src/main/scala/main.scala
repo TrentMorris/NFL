@@ -49,7 +49,7 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
       while(true){
         genNumber += 1
         if (genNumber %10 == 0){
-          println("\n\nGeneration " + genNumber + " || Best percentage so far: %.2f ".format(bestScore.toDouble/gamesPlayed)  + "|| %d || Found in generation %d".format(bestScore, bestGeneration))
+          println("\n\nGeneration %d || Best percentage so far: %.2f || %d || Found in generation %d".format(genNumber, bestScore.toDouble/gamesPlayed, bestScore, bestGeneration))
           val stopTime = System.currentTimeMillis
           println("\t10 generations took " + ((stopTime - startTime) / 1000) + " seconds")
           println("\t" + bestChromo)
