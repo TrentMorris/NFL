@@ -28,17 +28,25 @@ class ActorSpec extends Specification with NoTimeConversions {
 	   			weekActor! GAGameResult(1,100)
 	   			weekActor ! GiveResults
 	   			expectMsgType[List[(Int,Int)]] must be equalTo List((1,100))
-
 	   		}
 	   	}
-  }
-  "A GameActor" should {
+  	}
+  	"A GameActor" should {
   		"take in game parameters, make a prediction, and send a winner back" in new AkkaTestkitSpecs2Support {
-  			val gameActor = system.actorOf(Props[GameActor])
-  			// chromosomeNumber: Int, t1: String, t2: String, ch: Chromosome, weekOfSeason: Int, lastNGames: Int, year: String)
-  			gameActor ! GAGame(1,"Pittsburgh Steelers", "Cleveland Browns", Chromosome.basicChromosome(35), 6,3,"2013")
-  			expectMsgType[GAGameResult] //must be equalTo List((1,1))
-
+  			within(3 seconds){
+	  			val gameActor = system.actorOf(Props[GameActor])
+	  			gameActor ! GAGame(1,"Pittsburgh Steelers", "Cleveland Browns", Chromosome.basicChromosome(35), 6,3,"2013")
+	  			expectMsgType[GAGameResult] //must be equalTo List((1,1))
+	  		}
   		}
-  }
+  	}
+  	"MasterActor" should {
+  		"send back the game list when asked for it" in new AkkaTestkitSpecs2Support {
+	   		val MasterActor = system.actorOf(Props(new Master()))
+	      	within(1 second) {
+	        	MasterActor ! GiveResults
+	        	expectMsgType[List[(Int,Int)]] must be equalTo List()
+	      	}
+	    }
+  	}
 }

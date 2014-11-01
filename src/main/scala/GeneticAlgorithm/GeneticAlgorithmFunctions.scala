@@ -22,9 +22,12 @@ trait GeneticAlgorithmScala {
 		go(0, values, List())
 	}
 
-	def getBestChromosomeFromPopulation(values: List[(Int, Int)], pop: Population): Chromosome = getChromosomeFromPopulation(pop, values.maxBy(_._2)._1)
+	def getBestChromosomeAndScoreFromPopulation(values: List[(Int, Int)], pop: Population): (Chromosome,Int) = {
+		val max = values.maxBy(_._2)
+		(getChromosomeFromPopulation(pop, values.max._1), max._2)
+	}
 
-	def findMaxValue(values: List[(Int, Int)]): Int = values.maxBy(_._2)._2
+	// def findMaxValue(values: List[(Int, Int)]): Int = values.maxBy(_._2)._2
 
 	def newPopulationFromOld(pop: Population, bestPop: List[Chromosome]): Population = {
 		import scala.util.Random
@@ -66,9 +69,9 @@ trait GeneticAlgorithmScala {
 
 	def getChromosomeFromPopulation(pop: Population, index: Int): Chromosome = pop.population(index)
 
-	def resultsToAmountRight(result: List[(Int, Int)]) = {
+	def resultsToAmountRight(result: List[(Int, Int)], gamesToSort: Int) = {
 		val sortedResult = result.sortBy(_._1)
-		val slidingResult = sortedResult.sliding(256,256).toList
+		val slidingResult = sortedResult.sliding(gamesToSort,gamesToSort).toList
 		val amountRight = slidingResult.map(x => x.foldLeft(0)((b,a) => b + a._2))
 		(List.range(0,100), amountRight).zipped.toList
 	}

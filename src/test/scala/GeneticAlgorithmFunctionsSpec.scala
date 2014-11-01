@@ -14,6 +14,17 @@ object GeneticAlgorithmScalaSpec extends Specification with WinnerCalculator wit
             for (ch <- bestPop) newPop.population must contain(ch)
             newPop.size === pop.size
         }
+        "always have those same values in it" >> {
+            var newPop = pop
+            var bestPopulation = pop.population.slice(0,10)
+            for (x <- List.range(0,100)){
+                bestPopulation = pop.population.slice(0,10)
+                var newPop = newPopulationFromOld(pop, bestPopulation)
+            }
+            for (ch <- bestPopulation) newPop.population must contain(ch)
+            newPop.population.slice(0,10).size === bestPopulation.size
+            newPop.population.slice(0,10) === bestPopulation
+        }
     }
 
 	"Chromosome.apply" should {
