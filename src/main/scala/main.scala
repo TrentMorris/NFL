@@ -20,7 +20,7 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
     val system = ActorSystem("master")
     val master = system.actorOf(Props(new Master()), name = "master")
 
-    val runGA = true
+    val runGA = false
 
     implicit val timeout = Timeout(10 seconds)
 
@@ -88,8 +88,11 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
 
 
     else {
-      master ! Season(5, 1, 1, 3, Chromosome.apply(35), "2014")
+      // master ! Season(5, 1, 1, 3, Chromosome.apply(35), "2014")
       val steel = lastNGames2014("steelers", 5, 4)
+      val modFile = modifiedWholeStatsFile(Chromosome.basicChromosome(35))
+      println(modFile)
+      println(modFile.size)
 
     }
     system.shutdown()
