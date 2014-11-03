@@ -15,7 +15,6 @@ project/plugins/lib_managed/
 project/build/target/
 out/
 logs/
-*.csv
 *.iml
 *.swp
 *.iws
