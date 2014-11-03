@@ -27,7 +27,13 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
     if (runGA) {
       val popSize = 100
       val bestPopSize = 15
-
+      /*
+      This is start week / lastNGames
+        Week 3/2 = 224
+        Week 4/3 = 208
+        Week 5/4 = 193
+        Week 6/5 = 179
+      */
       val gamesPlayed = 193
       val startWeek = 5
       val numberOfWeeks = startWeek -1
@@ -40,13 +46,6 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
       var bestChromo: Chromosome = getChromosomeFromPopulation(population, 0)
       var startTime = System.currentTimeMillis
       var bestGeneration = 0
-      /*
-      This is start week / lastNGames
-        Week 3/2 = 224
-        Week 4/3 = 208
-        Week 5/4 = 193
-        Week 6/5 = 179
-      */
 
       while(true){
         genNumber += 1
