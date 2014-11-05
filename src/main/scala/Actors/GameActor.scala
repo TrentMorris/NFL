@@ -13,6 +13,7 @@ class GameActor extends Actor with WinnerCalculator {
     case GAGame(chromosomeNumber: Int, t1: String, t2: String, weekOfSeason: Int, lastNGames: Int, year: String, newStats: List[(String, String, Double,String)]) => {
       val originalSender = sender
       val guessedWinner = newCalculateWinner(t1,t2,weekOfSeason,lastNGames,newStats)
+
       val game = newStats(newStats.indexWhere(x => x._1 == t1 && x._2 == t2))
       val correctOrNot = if (guessedWinner == game._4) 1  else 0
       originalSender ! GAGameResult(chromosomeNumber, correctOrNot)

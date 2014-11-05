@@ -12,10 +12,10 @@ trait StatisticMethods {
     def modifiedWholeStatsFile(ch: Chromosome): List[(String,String, Double, String)] = {
 	   	for (game <- statsList2013.slice(1,statsList2013.size + 1)) yield {
 	   		val winner = if (game(2).toDouble > game(18).toDouble) game(1)
-                   else if (game(2).toDouble < game(18).toDouble) game(19)
+                   else if (game(2).toDouble < game(18).toDouble) game(17)
                    else game(1)
- 			println(winner)
-	   		(game(1),game(16), modifyStats(game, ch).sum, winner)
+
+	   		(game(1),game(17), modifyStats(game, ch).sum, winner)
 	   	}
     }
 

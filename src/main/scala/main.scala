@@ -20,7 +20,7 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
     val system = ActorSystem("master")
     val master = system.actorOf(Props(new Master()), name = "master")
 
-    val runGA = false
+    val runGA = true
 
     implicit val timeout = Timeout(10 seconds)
 
@@ -34,8 +34,8 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
         Week 5/4 = 193
         Week 6/5 = 179
       */
-      val gamesPlayed = 193
-      val startWeek = 5
+      val gamesPlayed = 208
+      val startWeek = 4
       val numberOfWeeks = startWeek -1
       val endWeek = 17
       val chromoSize = 35
@@ -57,7 +57,8 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
           startTime = System.currentTimeMillis
         }
         for (chromsomeNumber <- List.range(0, popSize)) {
-          val newStats = modifiedWholeStatsFile(population.population(chromsomeNumber))
+          // val newStats = modifiedWholeStatsFile(population.population(chromsomeNumber))
+          val newStats = modifiedWholeStatsFile(Chromosome.basicChromosome(35))
           master ! Season(chromsomeNumber, startWeek, endWeek, numberOfWeeks, "2013", newStats)
         }
 
@@ -66,6 +67,7 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
         while (result.size != (popSize * gamesPlayed)) {
           future = master ? GiveResults
           result = Await.result(future, timeout.duration).asInstanceOf[List[(Int, Int)]]
+          println(result.size)
         }
         master ! ClearGameList
 
