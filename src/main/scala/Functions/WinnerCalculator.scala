@@ -5,11 +5,27 @@ import scala.io.Source
 trait WinnerCalculator extends StatisticMethods{
 
 
-	def getMatchups(weekOfSeason: List[List[String]]): List[(String, String)] = {
-		val matchups = for (team <- weekOfSeason) yield List(team(1), team(17))
+	def newGetMatchups(weekOfSeason: List[(String, String, Double, String)])= {
+		val matchups = for (game <- weekOfSeason) yield List(game._1, game._2)
 		val orderedMatches = (matchups.map(_.sorted)).sortBy(x => x(1)).distinct
-		orderedMatches.map(x => (x(0), x(1)))
+	 	orderedMatches.map(x => (x(0), x(1)))
 	}
+	def newCalculateWinner(t1: String, t2: String, week: Int, lastNGames: Int, newStats: List[(String,String, Double, String)]): String = {
+		val t1New = newCalculateTotalTeamScore(newLastNGames2013(t1, week, lastNGames, newStats))
+		val t2New = newCalculateTotalTeamScore(newLastNGames2013(t1, week, lastNGames, newStats))
+		if (t1New > t2New) t1
+		else if (t2New > t1New) t2
+		else t1
+
+	}
+
+	def newCalculateTotalTeamScore(teamScore: List[(String,String, Double,String)]): Double =  (for (item <- teamScore) yield item._3).sum
+	
+	// def getMatchups(weekOfSeason: List[List[String]]): List[(String, String)] = {
+	// 	val matchups = for (team <- weekOfSeason) yield List(team(1), team(17))
+	// 	val orderedMatches = (matchups.map(_.sorted)).sortBy(x => x(1)).distinct
+	// 	orderedMatches.map(x => (x(0), x(1)))
+	// }
 
 	// def calculateWinner(t1: String, t2: String, chromo: Chromosome, week: Int, lastNGames: Int, year: String): String = {
 	// 	if (year == "2013") calculateWinner2013(t1, t2, chromo, week, lastNGames)
@@ -41,21 +57,9 @@ trait WinnerCalculator extends StatisticMethods{
 	// 	else t1
 	// }
 
-	def newCalculateWinner(t1: String, t2: String, week: Int, lastNGames: Int, newStats: List[(String, Double)]): String = {
-		val t1New = newCalculateTotalTeamScore(newLastNGames2013(t1, week, lastNGames, newStats))
-		val t2New = newCalculateTotalTeamScore(newLastNGames2013(t1, week, lastNGames, newStats))
-		if (t1New._2 > t2New._2) t1New._1
-		else if (t2New._2 > t1New._2) t2New._1
-		else t1New._1
 
-	}
-
-	def newCalculateTotalTeamScore(teamScore: List[(String, Double)]) = {
-		for (item <- teamScore) yield item._2
-	}
-
-	def calculateTotalTeamScore(teamStats: List[List[Double]]): Double = {
-		val statsList: List[Double] = for (gameStats <- teamStats) yield gameStats.sum
-		statsList.sum
-	}
+	// def calculateTotalTeamScore(teamStats: List[List[Double]]): Double = {
+	// 	val statsList: List[Double] = for (gameStats <- teamStats) yield gameStats.sum
+	// 	statsList.sum
+	// }
 }

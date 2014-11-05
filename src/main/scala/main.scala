@@ -57,7 +57,8 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
           startTime = System.currentTimeMillis
         }
         for (chromsomeNumber <- List.range(0, popSize)) {
-          master ! Season(chromsomeNumber, startWeek, endWeek, numberOfWeeks, population.population(chromsomeNumber), "2013")
+          val newStats = modifiedWholeStatsFile(population.population(chromsomeNumber))
+          master ! Season(chromsomeNumber, startWeek, endWeek, numberOfWeeks, "2013", newStats)
         }
 
         var future = master ? GiveResults
@@ -70,8 +71,6 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
 
         val chromoRight = resultsToAmountRight(result, gamesPlayed)
         val x = getBestChromosomeAndScoreFromPopulation(chromoRight, population)
-
-        // println("Generation %d - %d".format(genNumber,x._2))
 
         if (x._2 > bestScore ){
           bestGeneration = genNumber
@@ -87,10 +86,8 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
 
 
     else {
-      // master ! Season(5, 1, 1, 3, Chromosome.apply(35), "2014")
-      val steel = lastNGames2014("steelers", 5, 4)
       val modFile = modifiedWholeStatsFile(Chromosome.basicChromosome(35))
-      println(modFile)
+      modFile.foreach(println)
       println(modFile.size)
 
     }
