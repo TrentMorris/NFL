@@ -50,15 +50,14 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
       while(true){
         genNumber += 1
         if (genNumber %10 == 0){
-          println("\n\nGeneration %d || Best percentage so far: %.2f || %d || Found in generation %d".format(genNumber, bestScore.toDouble/gamesPlayed, bestScore, bestGeneration))
+          println("\n\nFound in generation %d || Best percentage so far: %.2f || %d || Generation %d".format(bestGeneration, bestScore.toDouble/gamesPlayed, bestScore, genNumber))
           val stopTime = System.currentTimeMillis
           println("\t10 generations took " + ((stopTime - startTime) / 1000) + " seconds")
           println("\t" + bestChromo)
           startTime = System.currentTimeMillis
         }
         for (chromsomeNumber <- List.range(0, popSize)) {
-          // val newStats = modifiedWholeStatsFile(population.population(chromsomeNumber))
-          val newStats = modifiedWholeStatsFile(Chromosome.basicChromosome(35))
+          val newStats = modifiedWholeStatsFile(population.population(chromsomeNumber))
           master ! Season(chromsomeNumber, startWeek, endWeek, numberOfWeeks, "2013", newStats)
         }
 
@@ -67,7 +66,6 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
         while (result.size != (popSize * gamesPlayed)) {
           future = master ? GiveResults
           result = Await.result(future, timeout.duration).asInstanceOf[List[(Int, Int)]]
-          println(result.size)
         }
         master ! ClearGameList
 

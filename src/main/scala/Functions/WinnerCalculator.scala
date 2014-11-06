@@ -10,9 +10,9 @@ trait WinnerCalculator extends StatisticMethods{
 		val orderedMatches = (matchups.map(_.sorted)).sortBy(x => x(1)).distinct
 	 	orderedMatches.map(x => (x(0), x(1)))
 	}
-	def newCalculateWinner(t1: String, t2: String, week: Int, lastNGames: Int, newStats: List[(String,String, Double, String)]): String = {
-		val t1New = newCalculateTotalTeamScore(newLastNGames2013(t1, week, lastNGames, newStats))
-		val t2New = newCalculateTotalTeamScore(newLastNGames2013(t1, week, lastNGames, newStats))
+	def calculateWinner2013(t1: String, t2: String, week: Int, lastNGames: Int, newStats: List[(String,String, Double, String)]): String = {
+		val t1New = newCalculateTotalTeamScore(lastNGames2013(t1, week, lastNGames, newStats))
+		val t2New = newCalculateTotalTeamScore(lastNGames2013(t1, week, lastNGames, newStats))
 		if (t1New > t2New) t1
 		else if (t2New > t1New) t2
 		else t1

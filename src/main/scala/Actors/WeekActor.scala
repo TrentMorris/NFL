@@ -14,13 +14,8 @@ class WeekActor extends Actor with WinnerCalculator {
 	def receive = {
 		case w@Week(_,_,_,_,_,_) => {
 			val matchups = newGetMatchups(w.weekStats)
-			if (matchups.size > 16) {
-				println(matchups)
-				println()
-			}
-
 			for (game <- matchups) {
-				GameActor ! GAGame(w.chromosomeNumber, game._1, game._2, w.week, w.lastNGames, w.year, w.newStats)
+				GameActor ! GAGame(w.chromosomeNumber, game._1, game._2, w.week, w.lastNGames, w.year, w.weekStats, w.newStats)
 			}
 		}
 

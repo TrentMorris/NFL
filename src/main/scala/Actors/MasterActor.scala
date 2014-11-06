@@ -11,7 +11,7 @@ import akka.dispatch.Await
 
 case class Season(chromosomeNumber: Int, startWeek: Int, endWeek: Int, lastNGames: Int, year: String, newStats: List[(String, String, Double, String)])
 case class Week(chromosomeNumber: Int,  week: Int, weekStats: List[(String, String, Double,String)], lastNGames: Int, year: String,newStats: List[(String, String, Double,String)])
-case class GAGame(chromosomeNumber: Int, t1: String, t2: String, week: Int, lastNGames: Int,  year: String, newStats: List[(String, String, Double,String)])
+case class GAGame(chromosomeNumber: Int, t1: String, t2: String, week: Int, lastNGames: Int,  year: String,weekStats: List[(String, String, Double,String)], newStats: List[(String, String, Double,String)])
 case class GAGameResult(chromosomeNumber: Int, correct: Int)
 case object GiveResults
 case object ClearGameList
