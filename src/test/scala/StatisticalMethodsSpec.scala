@@ -6,193 +6,194 @@ import scala.io.Source
 object StatisticalMethodsSpec extends Specification with WinnerCalculator {
 
     val newStats = modifiedWholeStatsFile(Chromosome.basicChromosome(35))
+
     "get2013TeamStats" should {
         "return right first and last teams in DB for week 1" >> {
-            val t1Stats = get2013TeamStats("Baltimore Ravens", 1, newStats)
-            t1Stats._1 == "Baltimore Ravens"
-            t1Stats._2 == "Denver Broncos"
+            val t1Stats =  get2013TeamStats("Baltimore Ravens", 1, newStats)
+            t1Stats._1 === "Baltimore Ravens"
+            t1Stats._2 === "Denver Broncos"
             t1Stats._3 must haveClass[java.lang.Double]
 
             val t2Stats = get2013TeamStats("Washington Redskins", 1, newStats)
-            t2Stats._1 == "Washington Redskins"
-            // t2Stats._2 == "Baltimore Ravens"
+            t2Stats._1 === "Washington Redskins"
+            t2Stats._2 == "Baltimore Ravens"
             t2Stats._3 must haveClass[java.lang.Double]
         }
         "return right first and last teams in DB for week 2" >> {
             val t1Stats = get2013TeamStats("New England Patriots", 2, newStats)
-            t1Stats._1 == "New England"
-            // t1Stats._2 == "Denver Broncos"
+            t1Stats._1 === "New England Patriots"
+            t1Stats._2 === "New York Jets"
             t1Stats._3 must haveClass[java.lang.Double]
 
             val t2Stats = get2013TeamStats("Pittsburgh Steelers", 2, newStats)
-            t2Stats._1 == "Pittsburgh Steelers"
-            // t2Stats._2 == "Denver Broncos"
+            t2Stats._1 === "Pittsburgh Steelers"
+            t2Stats._2 === "Cincinnati Bengals"
             t2Stats._3 must haveClass[java.lang.Double]
         }   
         "return right first and last teams in DB for week 3" >> {
             val t1Stats = get2013TeamStats("Kansas City Chiefs", 3, newStats)
-            t1Stats._1 == "Kansas City Chiefs"
-            // t1Stats._2 == "Denver Broncos"
+            t1Stats._1 === "Kansas City Chiefs"
+            t1Stats._2 === "Philadelphia Eagles"
             t1Stats._3 must haveClass[java.lang.Double]
 
             val t2Stats = get2013TeamStats("Oakland Raiders", 3, newStats)
-            t2Stats._1 == "Oakland Raiders"
-            // t1Stats._2 == "Denver Broncos"
+            t2Stats._1 === "Oakland Raiders"
+            t2Stats._2 === "Denver Broncos"
             t2Stats._3 must haveClass[java.lang.Double]
         }
         "return right first and last teams in DB for week 4" >> {
             val t1Stats = get2013TeamStats("San Francisco 49ers", 4, newStats)
-            t1Stats._1 == "San Francisco 49ers"
-            // t1Stats._2 == "Denver Broncos"
+            t1Stats._1 === "San Francisco 49ers"
+            t1Stats._2 === "St Louis Rams"
             t1Stats._3 must haveClass[java.lang.Double]
 
             val t2Stats = get2013TeamStats("New Orleans Saints", 4, newStats)
-            t2Stats._1 == "New Orleans Saints"
-            // t1Stats._2 == "Denver Broncos"
+            t2Stats._1 === "New Orleans Saints"
+            t2Stats._2 === "Miami Dolphins"
             t2Stats._3 must haveClass[java.lang.Double]
         }
         "return right first and last teams in DB for week 5" >> {
             val t1Stats = get2013TeamStats("Buffalo Bills", 5, newStats)
-            t1Stats._1 == "Buffalo Bills"
-            // t1Stats._2 == "Denver Broncos"
+            t1Stats._1 === "Buffalo Bills"
+            t1Stats._2 === "Cleveland Browns"
             t1Stats._3 must haveClass[java.lang.Double]
 
             val t2Stats = get2013TeamStats("New York Jets", 5, newStats)
-            t2Stats._1 == "New York Jets"
-            // t1Stats._2 == "Denver Broncos"
+            t2Stats._1 === "New York Jets"
+            t2Stats._2 === "Atlanta Falcons"
             t2Stats._3 must haveClass[java.lang.Double]
         }
         "return right first and last teams in DB for week 6" >> {
             val t1Stats = get2013TeamStats("Chicago Bears", 6, newStats)
-            t1Stats._1 == "Chicago Bears"
-            // t1Stats._2 == "Denver Broncos"
+            t1Stats._1 === "Chicago Bears"
+            t1Stats._2 === "New York Giants"
             t1Stats._3 must haveClass[java.lang.Double]
 
             val t2Stats = get2013TeamStats("San Diego Chargers", 6, newStats)
-            t2Stats._1 == "San Diego Chargers"
-            // t1Stats._2 == "Denver Broncos"
+            t2Stats._1 === "San Diego Chargers"
+            t2Stats._2 === "Indianapolis Colts"
             t2Stats._3 must haveClass[java.lang.Double]
         }
         "return right first and last teams in DB for week 7" >> {
             val t1Stats = get2013TeamStats("Arizona Cardinals", 7, newStats)
-            t1Stats._1 == "Arizona Cardinals"
-            // t1Stats._2 == "Denver Broncos"
+            t1Stats._1 === "Arizona Cardinals"
+            t1Stats._2 === "Seattle Seahawks"
             t1Stats._3 must haveClass[java.lang.Double]
 
             val t2Stats = get2013TeamStats("New York Giants", 7, newStats)
-            t2Stats._1 == "New York Giants"
-            // t1Stats._2 == "Denver Broncos"
+            t2Stats._1 === "New York Giants"
+            t2Stats._2 === "Minnesota Vikings"
             t2Stats._3 must haveClass[java.lang.Double]
         }
         "return right first and last teams in DB for week 8" >> {
             val t1Stats = get2013TeamStats("Carolina Panthers", 8, newStats)
-            t1Stats._1 == "Carolina Panthers"
-            // t1Stats._2 == "Denver Broncos"
+            t1Stats._1 === "Carolina Panthers"
+            t1Stats._2 === "Tampa Bay Buccaneers"
             t1Stats._3 must haveClass[java.lang.Double]
 
             val t2Stats = get2013TeamStats("St Louis Rams", 8, newStats)
-            t2Stats._1 == "St Louis Rams"
-            // t1Stats._2 == "Denver Broncos"
+            t2Stats._1 === "St Louis Rams"
+            t2Stats._2 === "Seattle Seahawks"
             t2Stats._3 must haveClass[java.lang.Double]
         }
         "return right first and last teams in DB for week 9" >> {
             val t1Stats = get2013TeamStats("Cincinnati Bengals", 9, newStats)
-            t1Stats._1 == "Cincinnati Bengals"
-            // t1Stats._2 == "Denver Broncos"
+            t1Stats._1 ==="Cincinnati Bengals"
+            t1Stats._2 === "Miami Dolphins"
             t1Stats._3 must haveClass[java.lang.Double]
 
             val t2Stats = get2013TeamStats("Green Bay Packers", 9, newStats)
-            t2Stats._1 == "Green Bay Packers"
-            // t1Stats._2 == "Denver Broncos"
+            t2Stats._1 === "Green Bay Packers"
+            t2Stats._2 === "Chicago Bears"
             t2Stats._3 must haveClass[java.lang.Double]
         }
         "return right first and last teams in DB for week 10" >> {
             val t1Stats = get2013TeamStats("Minnesota Vikings", 10, newStats)
-            t1Stats._1 == "Minnesota Vikings"
-            // t1Stats._2 == "Denver Broncos"
+            t1Stats._1 === "Minnesota Vikings"
+            t1Stats._2 === "Washington Redskins"
             t1Stats._3 must haveClass[java.lang.Double]
 
             val t2Stats = get2013TeamStats("Tampa Bay Buccaneers", 10, newStats)
-            t2Stats._1 == "Tampa Bay Buccaneers"
-            // t1Stats._2 == "Denver Broncos"
+            t2Stats._1 === "Tampa Bay Buccaneers"
+            t2Stats._2 === "Miami Dolphins"
             t2Stats._3 must haveClass[java.lang.Double]
         }
         "return right first and last teams in DB for week 11" >> {
             val t1Stats = get2013TeamStats("Indianapolis Colts", 11, newStats)
-            t1Stats._1 == "Indianapolis Colts"
-            // t1Stats._2 == "Denver Broncos"
+            t1Stats._1 === "Indianapolis Colts"
+            t1Stats._2 === "Tennessee Titans"
             t1Stats._3 must haveClass[java.lang.Double]
 
             val t2Stats = get2013TeamStats("New England Patriots", 11, newStats)
-            t2Stats._1 == "New England Patriots"
-            // t1Stats._2 == "Denver Broncos"
+            t2Stats._1 === "New England Patriots"
+            t2Stats._2 === "Carolina Panthers"
             t2Stats._3 must haveClass[java.lang.Double]
         }
         "return right first and last teams in DB for week 12" >> {
             val t1Stats = get2013TeamStats("Atlanta Falcons", 12, newStats)
-            t1Stats._1 == "Atlanta Falcons"
-            // t1Stats._2 == "Denver Broncos"
+            t1Stats._1 === "Atlanta Falcons"
+            t1Stats._2 === "New Orleans Saints"
             t1Stats._3 must haveClass[java.lang.Double]
 
             val t2Stats = get2013TeamStats("Washington Redskins", 12, newStats)
-            t2Stats._1 == "Washington Redskins"
-            // t1Stats._2 == "Denver Broncos"
+            t2Stats._1 === "Washington Redskins"
+            t2Stats._2 === "San Francisco 49ers"
             t2Stats._3 must haveClass[java.lang.Double]
         }
         "return right first and last teams in DB for week 13" >> {
             val t1Stats = get2013TeamStats("Baltimore Ravens", 13, newStats)
-            t1Stats._1 == "Baltimore Ravens"
-            // t1Stats._2 == "Denver Broncos"
+            t1Stats._1 === "Baltimore Ravens"
+            t1Stats._2 === "Pittsburgh Steelers"
             t1Stats._3 must haveClass[java.lang.Double]
 
             val t2Stats = get2013TeamStats("Seattle Seahawks", 13, newStats)
-            t2Stats._1 == "Seattle Seahawks"
-            t2Stats._2 == "Denver Broncos"
+            t2Stats._1 === "Seattle Seahawks"
+            t2Stats._2 === "New Orleans Saints"
             t2Stats._3 must haveClass[java.lang.Double]
 
         }
         "return right first and last teams in DB for week 14" >> {
             val t1Stats = get2013TeamStats("Houston Texans", 14, newStats)
-            t1Stats._1 == "Houston Texans"
-            // t1Stats._2 == "Denver Broncos"
+            t1Stats._1 === "Houston Texans"
+            t1Stats._2 === "Jacksonville Jaguars"
             t1Stats._3 must haveClass[java.lang.Double]
 
             val t2Stats = get2013TeamStats("Dallas Cowboys", 14, newStats)
-            t2Stats._1 == "Dallas Cowboys"
-            t2Stats._2 == "Denver Broncos"
+            t2Stats._1 === "Dallas Cowboys"
+            t2Stats._2 === "Chicago Bears"
             t2Stats._3 must haveClass[java.lang.Double]
         }
         "return right first and last teams in DB for week 15" >> {
             val t1Stats = get2013TeamStats("Denver Broncos", 15, newStats)
-            t1Stats._1 == "Denver Broncos"
-            // t1Stats._2 == "Baltimore Ravens"
+            t1Stats._1 === "Denver Broncos"
+            t1Stats._2 === "San Diego Chargers"
             t1Stats._3 must haveClass[java.lang.Double]
 
             val t2Stats = get2013TeamStats("Detroit Lions", 15, newStats)
-            t2Stats._1 == "Detroit Lions"
-            // t1Stats._2 == "Denver Broncos"
+            t2Stats._1 === "Detroit Lions"
+            t2Stats._2 === "Baltimore Ravens"
             t2Stats._3 must haveClass[java.lang.Double]
         }
         "return right first and last teams in DB for week 16" >> {
             val t1Stats = get2013TeamStats("Arizona Cardinals", 16, newStats)
-            t1Stats._1 == "Arizona Cardinals"
-            // t1Stats._2 == "Denver Broncos"
+            t1Stats._1 === "Arizona Cardinals"
+            t1Stats._2 === "Seattle Seahawks"
             t1Stats._3 must haveClass[java.lang.Double]
 
             val t2Stats = get2013TeamStats("San Francisco 49ers", 16, newStats)
-            t2Stats._1 == "San Francisco 49ers"
-            // t1Stats._2 == "Denver Broncos"
+            t2Stats._1 === "San Francisco 49ers"
+            t2Stats._2 === "Atlanta Falcons"
             t2Stats._3 must haveClass[java.lang.Double]
         }
         "return right first and last teams in DB for week 17" >> {
             val t1Stats = get2013TeamStats("Arizona Cardinals", 17, newStats)
-            t1Stats._1 == "Arizona Cardinals"
-            // t1Stats._2 == "Denver Broncos"
+            t1Stats._1 === "Arizona Cardinals"
+            t1Stats._2 === "San Francisco 49ers"
             t1Stats._3 must haveClass[java.lang.Double]
 
             val t2Stats = get2013TeamStats("Washington Redskins", 17, newStats)
-            t2Stats._1 == "Washington Redskins"
-            // t1Stats._2 == "Denver Broncos"
+            t2Stats._1 ==="Washington Redskins"
+            t2Stats._2 === "New York Giants"
             t2Stats._3 must haveClass[java.lang.Double]
         }
         "return empty list when not a real team name" >> {

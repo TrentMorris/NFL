@@ -23,7 +23,7 @@ object WinnerCalculatorSpecSpec extends Specification with WinnerCalculator {
     "calculateWinner" should {
         "return correct winner" >> {
             val winner = calculateWinner2013("Pittsburgh Steelers", "Cleveland Browns", 6,3,newStats )
-            winner === "Pittsburgh Steelers"
+            winner === "Cleveland Browns"
         }
         "return t1 if a tie" >> {
             val stats = modifiedWholeStatsFile(Chromosome.allZeroChromosome(35))

@@ -10,10 +10,7 @@ import akka.util.duration._
 
 /*
 Optimizing branch
-Idea: Instead of always modifying stats just do it once for each chromosome basically. So take whole game list and run it through modify stats 
-and get "score" for that week. That way not recalculating over and over and just Have List[List[(teamName, weekScore)]] which would pertain to that 
-chromosome. Which can easily grab then
-
+Need finished up tests for first and last weeks. Calculating multiple week scores with lastNGames
 */
 object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
   def main(args: Array[String]) {
@@ -43,21 +40,21 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
       var genNumber = 0
       var bestScore = 0
       var population = firstGenerationPopulation(popSize,chromoSize) 
-      var bestChromo: Chromosome = getChromosomeFromPopulation(population, 0)
+      var bestChromo: Chromosome = population.getChromosome(0)
       var startTime = System.currentTimeMillis
       var bestGeneration = 0
 
       while(true){
         genNumber += 1
-        if (genNumber %10 == 0){
-          println("\n\nFound in generation %d || Best percentage so far: %.2f || %d || Generation %d".format(bestGeneration, bestScore.toDouble/gamesPlayed, bestScore, genNumber))
+        if (genNumber %10 == 0 && genNumber != 0){
+          println("\n\nFound in generation %d || Best percentage so far: %.2f || Best score %d || Generation %d".format(bestGeneration, bestScore.toDouble/gamesPlayed, bestScore, genNumber))
           val stopTime = System.currentTimeMillis
           println("\t10 generations took " + ((stopTime - startTime) / 1000) + " seconds")
           println("\t" + bestChromo)
           startTime = System.currentTimeMillis
         }
         for (chromsomeNumber <- List.range(0, popSize)) {
-          val newStats = modifiedWholeStatsFile(population.population(chromsomeNumber))
+          val newStats = modifiedWholeStatsFile(population.getChromosome(chromsomeNumber))
           master ! Season(chromsomeNumber, startWeek, endWeek, numberOfWeeks, "2013", newStats)
         }
 
@@ -73,6 +70,7 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
         val x = getBestChromosomeAndScoreFromPopulation(chromoRight, population)
 
         if (x._2 > bestScore ){
+          println("Generation " + genNumber + " || Best score " +x._2)
           bestGeneration = genNumber
           bestChromo = x._1
           bestScore = x._2
