@@ -6,6 +6,18 @@ import scala.io.Source
 object StatisticalMethodsSpec extends Specification with WinnerCalculator {
 
     val newStats = modifiedWholeStatsFile(Chromosome.basicChromosome(35))
+    "sumGameScore" should {
+        "not modify stats that matter" >> {
+            val game = statsList2013(1)
+            val gameMod = sumGameScore(game, Chromosome.basicChromosome(35))
+            gameMod === 1453.0
+        }
+        "return 0.0 if 0 chromosome" >> {
+            val game = statsList2013(1)
+            val gameMod = sumGameScore(game, Chromosome.allZeroChromosome(35))
+            gameMod === 0.0
+        }
+    }
 
     "get2013TeamStats" should {
         "return right first and last teams in DB for week 1" >> {
@@ -318,16 +330,16 @@ object StatisticalMethodsSpec extends Specification with WinnerCalculator {
     // def lastNGames2013(team: String, week: Int, lastNGames: Int, newStats: List[(String,String, java.lang.Double, String)]): List[(String,String, java.lang.Double,String)] = {
 
 
-    // "lastNGames2013" should {
-    //     "return right number of games" >> {
-    //         val games = lastNGames2013("Pittsburgh Steelers", 8, 7,newStats).distinct
-    //         games must not contain ("","",0.0,"")
-    //         games.size === 7
-    //     }
-    //     "not contain an empty List" >> {
-    //         val games = lastNGames2013("Atlanta Falcons", 17, 16,newStats).distinct
-    //         games must not contain ("","",0.0,"")
-    //         games.size === 16
-    //     }
-    // }
+    "lastNGames2013" should {
+        "return right number of games" >> {
+            val games = lastNGames2013("Pittsburgh Steelers", 8, 7,newStats).distinct
+            games must not contain (("","",0.0,""))
+            games.size === 7
+        }
+        "not contain an empty List" >> {
+            val games = lastNGames2013("Atlanta Falcons", 17, 16,newStats).distinct
+            games must not contain (("","",0.0,""))
+            games.size === 16
+        }
+    }
 }

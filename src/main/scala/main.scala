@@ -31,8 +31,8 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
         Week 5/4 = 193
         Week 6/5 = 179
       */
-      val gamesPlayed = 208
-      val startWeek = 4
+      val gamesPlayed = 16
+      val startWeek = 17
       val numberOfWeeks = startWeek -1
       val endWeek = 17
       val chromoSize = 35
@@ -46,10 +46,10 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
 
       while(true){
         genNumber += 1
-        if (genNumber %10 == 0 && genNumber != 0){
+        if (genNumber %25 == 0 && genNumber != 0){
           println("\n\nFound in generation %d || Best percentage so far: %.2f || Best score %d || Generation %d".format(bestGeneration, bestScore.toDouble/gamesPlayed, bestScore, genNumber))
           val stopTime = System.currentTimeMillis
-          println("\t10 generations took " + ((stopTime - startTime) / 1000) + " seconds")
+          println("\t25 generations took " + ((stopTime - startTime) / 1000) + " seconds")
           println("\t" + bestChromo)
           startTime = System.currentTimeMillis
         }
@@ -70,7 +70,7 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
         val x = getBestChromosomeAndScoreFromPopulation(chromoRight, population)
 
         if (x._2 > bestScore ){
-          println("Generation " + genNumber + " || Best score " +x._2)
+          // println("Generation " + genNumber + " || Best score " +x._2)
           bestGeneration = genNumber
           bestChromo = x._1
           bestScore = x._2

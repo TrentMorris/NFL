@@ -15,6 +15,7 @@ class GameActor extends Actor with WinnerCalculator {
       val guessedWinner = calculateWinner2013(t1,t2,weekOfSeason,lastNGames,newStats)
       val game = weekStats(weekStats.indexWhere(x => x._1 == t1 && x._2 == t2))
       val correctOrNot = if (guessedWinner == game._4) 1  else 0
+      if (correctOrNot == 0) println(t1)
       originalSender ! GAGameResult(chromosomeNumber, correctOrNot)
     }
   }
