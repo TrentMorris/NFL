@@ -94,7 +94,7 @@ object GeneticAlgorithmScalaSpec extends Specification with WinnerCalculator wit
     "breedTwoChromosomes" should {
     	"only have values from either of those two chromosomes" >> {
     		val newCh = breedTwoChromosomes(Chromosome.basicChromosome(35), Chromosome.allZeroChromosome(35))
-    		for (value <- newCh.chromosome) value === 0.0 or value === 1.0
+    		for (value <- newCh.chromosome) List(1.0, 0.0, -1.0) must contain(value)
     	}
     }
 }

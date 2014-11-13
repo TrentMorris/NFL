@@ -40,7 +40,7 @@ trait StatisticMethods {
 	}
 
 	def lastNGames2013(team: String, week: Int, lastNGames: Int, newStats: List[(String,String, Double, String)]): List[(String,String, Double,String)] = {
-		val games= for (weekNumber <- List.range(0,lastNGames))  yield( get2013TeamStats(team,(week-weekNumber), newStats))
+		val games= for (weekNumber <- List.range(1,lastNGames + 1))  yield get2013TeamStats(team,(week-weekNumber), newStats)
 		if (games.contains(List())){ 
 			val newGames = games.filter(x => x != List())
 			get2013TeamStats(team, (week - lastNGames), newStats) :: newGames

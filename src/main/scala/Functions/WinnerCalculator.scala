@@ -15,9 +15,9 @@ trait WinnerCalculator extends StatisticMethods{
 		val t2Games = lastNGames2013(t2, week, lastNGames, newStats)
 
 		val t1Score = if (t1Games.contains(("","",0.0,""))) newCalculateTotalTeamScore(t1Games)
-					else newCalculateTotalTeamScore(lastNGames2013(t1, week, lastNGames + 1, newStats).filter(x => x != ("","",0.0,"")))
+					else newCalculateTotalTeamScore(lastNGames2013(t1, week, lastNGames , newStats).filter(x => x != ("","",0.0,"")))
 		val t2Score = if (t2Games.contains(("","",0.0,""))) newCalculateTotalTeamScore(t2Games)
-					else newCalculateTotalTeamScore(lastNGames2013(t2, week, lastNGames + 1, newStats).filter(x => x != ("","",0.0,"")))					
+					else newCalculateTotalTeamScore(lastNGames2013(t2, week, lastNGames, newStats).filter(x => x != ("","",0.0,"")))					
 		if (t1Score > t2Score) t1
 		else if (t2Score > t1Score) t2
 		else t1

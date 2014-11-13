@@ -8,11 +8,23 @@ object WinnerCalculatorSpecSpec extends Specification with WinnerCalculator {
 
     val newStats = modifiedWholeStatsFile(Chromosome.basicChromosome(35))
 
+    "newCalculateTotalTeamScore" should {
+        "have total of 0 if chromosome is zeroes" >> {
+            val stats = modifiedWholeStatsFile(Chromosome.allZeroChromosome(35))
+            val games = lastNGames2013("Pittsburgh Steelers", 17,16, stats)
+            newCalculateTotalTeamScore(games) === 0.0
+        }
+        "have correct total for basic chromosome" >> {
+            val games = lastNGames2013("Miami Dolphins", 4,3, newStats)
+            val score1 = get2013TeamStats("Miami Dolphins",1,newStats)._3 + get2013TeamStats("Miami Dolphins",2,newStats)._3 + get2013TeamStats("Miami Dolphins",3,newStats)._3
+            score1 === newCalculateTotalTeamScore(games) 
+        }
+    }
+
     "newGetMatchups" should {
         "get correct matchups for week 1" >> {
             val weekStats = getNthWeek2013(1, newStats)
             val  matchups = newGetMatchups(weekStats) 
-
             matchups must contain(("Baltimore Ravens","Denver Broncos"))
             matchups must contain(("Arizona Cardinals", "St Louis Rams"))
             matchups must contain(("Atlanta Falcons","New Orleans Saints"))
@@ -48,7 +60,7 @@ object WinnerCalculatorSpecSpec extends Specification with WinnerCalculator {
     "calculateWinner" should {
         "return correct winner" >> {
             val winner = calculateWinner2013("Pittsburgh Steelers", "Cleveland Browns", 6,3,newStats )
-            winner === "Cleveland Browns"
+            winner === "Pittsburgh Steelers"
         }
         "return t1 if a tie" >> {
             val stats = modifiedWholeStatsFile(Chromosome.allZeroChromosome(35))

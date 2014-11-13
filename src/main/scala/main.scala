@@ -31,8 +31,8 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
         Week 5/4 = 193
         Week 6/5 = 179
       */
-      val gamesPlayed = 16
-      val startWeek = 17
+      val gamesPlayed = 208
+      val startWeek = 4
       val numberOfWeeks = startWeek -1
       val endWeek = 17
       val chromoSize = 35

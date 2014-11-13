@@ -6,11 +6,23 @@ import scala.io.Source
 object StatisticalMethodsSpec extends Specification with WinnerCalculator {
 
     val newStats = modifiedWholeStatsFile(Chromosome.basicChromosome(35))
+
+    "lastNGames2013" should {
+        "have correct number of games" >> {
+            lastNGames2013("Pittsburgh Steelers", 16, 8, newStats).size === 8
+        }
+        "have actual right games" >> {
+            val games = lastNGames2013("Pittsburgh Steelers", 3,2,newStats)
+            games.size === 2
+            games(1)._2 === "Tennessee Titans"
+            games(0)._2 === "Cincinnati Bengals"
+        }
+    }
     "sumGameScore" should {
         "not modify stats that matter" >> {
             val game = statsList2013(1)
             val gameMod = sumGameScore(game, Chromosome.basicChromosome(35))
-            gameMod === 1453.0
+            gameMod === -21.0
         }
         "return 0.0 if 0 chromosome" >> {
             val game = statsList2013(1)
