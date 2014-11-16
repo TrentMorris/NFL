@@ -7,6 +7,17 @@ object StatisticalMethodsSpec extends Specification with WinnerCalculator {
 
     val newStats = modifiedWholeStatsFile(Chromosome.basicChromosome(35))
 
+    "modifiedWholeStatsFile" should {
+        val file = modifiedWholeStatsFile(Chromosome.basicChromosome(35))
+        file.size === 512
+        file(0)._1 === "Baltimore Ravens"
+        file(0)._2 === "Denver Broncos"
+        file(0)._3 must haveClass[java.lang.Double]
+        file(511)._1 === "Washington Redskins"
+        file(511)._2 === "New York Giants"
+        file(511)._3 must haveClass[java.lang.Double]
+    }
+
     "lastNGames2013" should {
         "have correct number of games" >> {
             lastNGames2013("Pittsburgh Steelers", 16, 8, newStats).size === 8

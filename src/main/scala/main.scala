@@ -23,7 +23,8 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
 
     if (runGA) {
       val popSize = 100
-      val bestPopSize = 15
+      val bestPopSize = 10
+      val mutationRate = 0.01
       /*
       This is start week / lastNGames
         Week 3/2 = 224
@@ -70,7 +71,6 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
         val x = getBestChromosomeAndScoreFromPopulation(chromoRight, population)
 
         if (x._2 > bestScore ){
-          // println("Generation " + genNumber + " || Best score " +x._2)
           bestGeneration = genNumber
           bestChromo = x._1
           bestScore = x._2
