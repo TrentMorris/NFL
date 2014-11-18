@@ -25,6 +25,7 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
       val popSize = 100
       val bestPopSize = 10
       val mutationRate = 0.01
+      val randomToBreed = 30
       /*
       This is start week / lastNGames
         Week 3/2 = 224
@@ -76,7 +77,7 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
           bestScore = x._2
         }
         val bestPopulation = getTopFromPopulation(bestPopSize, chromoRight, population)
-        population = newPopulationFromOld(population, bestPopulation)
+        population = newPopulationFromOld(population, bestPopulation, randomToBreed, mutationRate)
       }
       println("We are done " + bestScore)
       system.shutdown()

@@ -4,6 +4,13 @@ import scala.util.Random
 
 trait GeneticAlgorithmScala {
 
+	def mutateChromosome(ch: Chromosome, index :Int): Chromosome = {
+		val chList = ch.chromosome
+		val newChList = if (index < 18) chList.slice(0, index) ::: List( Random.nextFloat) ::: chList.slice(index + 1, chList.size) ::: Nil
+						else 			chList.slice(0, index) ::: List(-Random.nextFloat) ::: chList.slice(index + 1, chList.size) ::: Nil
+		new Chromosome(chList)
+	}
+
 	def getTopFromPopulation(numberOfBest: Int, values: List[(Int, Int)], pop: Population): List[Chromosome] = {
 		val indexes = indexesOfBest(numberOfBest, values)
 		for (eachIndex <- indexes) yield pop.population(eachIndex)
@@ -29,7 +36,7 @@ trait GeneticAlgorithmScala {
 
 	// def findMaxValue(values: List[(Int, Int)]): Int = values.maxBy(_._2)._2
 
-	def newPopulationFromOld(pop: Population, bestPop: List[Chromosome]): Population = {
+	def newPopulationFromOld(pop: Population, bestPop: List[Chromosome], randomToBreed: Int, mutationRate: Double): Population = {
 		import scala.util.Random
 		val popSize = pop.population.size
 
@@ -47,8 +54,12 @@ trait GeneticAlgorithmScala {
 				val secondIndex = Random.nextInt(pop.size)
 				breedTwoChromosomes(pop.population(firstIndex), pop.population(secondIndex))
 			}
-		val allButRandom: List[Chromosome] = bestPop ::: randomBredWithRandom ::: bestBreedWithRandomPopulation
+		val bestMutated: List[Chromosome] = (for (ch <- bestPop) yield {
+			if (Random.nextFloat < mutationRate) mutateChromosome(ch, Random.nextInt(ch.size))
+			else Chromosome.basicChromosome(35)
+			}).filter(x => x.chromosome != Chromosome.basicChromosome(35).chromosome)
 
+		val allButRandom: List[Chromosome] = bestPop ::: randomBredWithRandom ::: bestBreedWithRandomPopulation ::: bestMutated
 		val remainingNeeded = popSize - allButRandom.size 
 		val finalPop = for (x <- List.range(0, remainingNeeded)) yield Chromosome.apply(35)
 		new Population(allButRandom ::: finalPop)
