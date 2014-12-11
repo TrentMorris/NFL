@@ -5,6 +5,8 @@ trait StatisticMethods {
 
 	val source = Source.fromURL(getClass.getResource("/nfl2013stats.csv"))
     val statsList2013 = source.mkString.replace("\n",",").split(",").toList.sliding(35,35).toList
+    val avSource = Source.fromURL(getClass.getResource("/averages2013.csv"))
+    val averages2013 = avSource.mkString.replace("\n",",").split(",").toList.sliding(35,35).toList.flatten
 
     val secondSource = Source.fromURL(getClass.getResource("/nfl2014stats.csv"))
     val statsList2014 = secondSource.mkString.replace("\n", ",").split(",").toList.sliding(35, 35).toList

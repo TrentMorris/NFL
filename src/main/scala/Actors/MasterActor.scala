@@ -40,5 +40,7 @@ class Master extends Actor with WinnerCalculator{
 			else println("wrong year")
 		}
 		case c@ClearGameList => WeekActor ! c
+
+		case g@GAGame(_,_,_,_,_,_,_,_) => WeekActor ! g
 	}
 }
