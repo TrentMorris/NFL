@@ -13,8 +13,10 @@ class WeekActor extends Actor with WinnerCalculator {
 
 	def receive = {
 		case w@Week(_,_,_,_,_,_) => {
-			val matchups = getMatchups(w.weekOfSeason)
-			for (game <- matchups) GameActor ! GAGame(w.chromosomeNumber, game._1, game._2, w.ch, w.week, w.lastNGames, w.year)
+			val matchups = newGetMatchups(w.weekStats)
+			for (game <- matchups) {
+				GameActor ! GAGame(w.chromosomeNumber, game._1, game._2, w.week, w.lastNGames, w.year, w.weekStats, w.newStats)
+			}
 		}
 
 		case ga@GAGameResult(_,_) => {
@@ -25,5 +27,7 @@ class WeekActor extends Actor with WinnerCalculator {
 			sender ! gameList
 		}
 		case ClearGameList => gameList = List()
+
+		case g@GAGame(_,_,_,_,_,_,_,_)=> GameActor ! g
 	}
 }

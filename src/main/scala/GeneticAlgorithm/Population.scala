@@ -7,6 +7,7 @@ class Population(pop: List[Chromosome]){
 	def size = population.size
 
 	override def toString = population.mkString("\n")
+	def getChromosome(x: Int) = population(x)
 }
 
 object Population{

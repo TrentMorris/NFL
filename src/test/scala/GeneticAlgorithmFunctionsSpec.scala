@@ -6,11 +6,31 @@ import scala.io.Source
 object GeneticAlgorithmScalaSpec extends Specification with WinnerCalculator with GeneticAlgorithmScala {
 	val population = Population(1)(35)
 
+    "mutateChromosome" should {
+        "only mutate a single spot" >> {
+            val index = 17
+            val ch = Chromosome.basicChromosome(35)
+            val mutated = mutateChromosome(ch, index)
+            mutated.chromosome.size === 35
+            mutated.chromosome.slice(1,ch.size) === ch.chromosome.slice(1,ch.size)
+            val t1 = (0.5).toFloat
+            mutated.chromosome(index) must beCloseTo(t1, t1)
+        }
+        "be negative if index > 18" >> {
+            val index = 18
+            val ch = Chromosome.basicChromosome(35)
+            val mutated = mutateChromosome(ch, index)
+            mutated.chromosome.slice(1,ch.size) === ch.chromosome.slice(1,ch.size)
+            val t1 = (0.5).toFloat
+            mutated.chromosome(index) must beCloseTo(-t1, t1)
+        }
+    }
+
     "newPopulationFromOld" should {
         val pop = Population.apply(100)(35)
         val bestPop = Population.apply(10)(35).population
         "have certain chromosomes carried over" >> {
-            val newPop = newPopulationFromOld(pop, bestPop)
+            val newPop = newPopulationFromOld(pop, bestPop,30, 0.1)
             for (ch <- bestPop) newPop.population must contain(ch)
             newPop.size === pop.size
         }
@@ -19,7 +39,7 @@ object GeneticAlgorithmScalaSpec extends Specification with WinnerCalculator wit
             var bestPopulation = pop.population.slice(0,10)
             for (x <- List.range(0,100)){
                 bestPopulation = pop.population.slice(0,10)
-                var newPop = newPopulationFromOld(pop, bestPopulation)
+                var newPop = newPopulationFromOld(pop, bestPopulation,30, 0.1)
             }
             for (ch <- bestPopulation) newPop.population must contain(ch)
             newPop.population.slice(0,10).size === bestPopulation.size
@@ -94,7 +114,7 @@ object GeneticAlgorithmScalaSpec extends Specification with WinnerCalculator wit
     "breedTwoChromosomes" should {
     	"only have values from either of those two chromosomes" >> {
     		val newCh = breedTwoChromosomes(Chromosome.basicChromosome(35), Chromosome.allZeroChromosome(35))
-    		for (value <- newCh.chromosome) value === 0.0 or value === 1.0
+    		for (value <- newCh.chromosome) List(1.0, 0.0, -1.0) must contain(value)
     	}
     }
 }

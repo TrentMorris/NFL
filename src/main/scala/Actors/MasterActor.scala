@@ -9,9 +9,9 @@ import akka.util.Timeout
 import akka.dispatch.Await
 
 
-case class Season(chromosomeNumber: Int, startWeek: Int, endWeek: Int, lastNGames: Int, ch: Chromosome, year: String) // Season will need chromosome eventually along with week
-case class Week(chromosomeNumber: Int, ch: Chromosome,  week: Int, lastNGames: Int, weekOfSeason: List[List[String]], year: String)
-case class GAGame(chromosomeNumber: Int, t1: String, t2: String, ch: Chromosome, week: Int, lastNGames: Int,  year: String)
+case class Season(chromosomeNumber: Int, startWeek: Int, endWeek: Int, lastNGames: Int, year: String, newStats: List[(String, String, Double, String)])
+case class Week(chromosomeNumber: Int,  week: Int, weekStats: List[(String, String, Double,String)], lastNGames: Int, year: String,newStats: List[(String, String, Double,String)])
+case class GAGame(chromosomeNumber: Int, t1: String, t2: String, week: Int, lastNGames: Int,  year: String,weekStats: List[(String, String, Double,String)], newStats: List[(String, String, Double,String)])
 case class GAGameResult(chromosomeNumber: Int, correct: Int)
 case object GiveResults
 case object ClearGameList
@@ -34,11 +34,13 @@ class Master extends Actor with WinnerCalculator{
 		case s@Season(_,_,_,_,_,_) => {
 			if (s.year == "2013"){
 				for (week <- List.range(s.startWeek, s.endWeek + 1)){
-					WeekActor ! Week(s.chromosomeNumber, s.ch ,week,s.lastNGames, getNthWeek2013(week),s.year)
+					WeekActor ! Week(s.chromosomeNumber,week, getNthWeek2013(week, s.newStats), s.lastNGames ,s.year, s.newStats)
 				}
 			}
 			else println("wrong year")
 		}
 		case c@ClearGameList => WeekActor ! c
+
+		case g@GAGame(_,_,_,_,_,_,_,_) => WeekActor ! g
 	}
 }

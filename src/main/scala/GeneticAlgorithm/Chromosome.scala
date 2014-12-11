@@ -23,7 +23,11 @@ object Chromosome{
 	}
 
 	def basicChromosome(size:Int) = {
-		new Chromosome(List.fill(size)(1.toFloat))
+		val floatList = for (index <- List.range(0,size))yield {
+			if (index < 18) 1.toFloat
+			else -(1.toFloat)
+		}
+		new Chromosome(floatList)
 	}
 	def allZeroChromosome(size: Int) = {
 		new Chromosome(List.fill(size)(0.toFloat))
