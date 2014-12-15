@@ -26,14 +26,14 @@ trait StatisticMethods {
 			if (index == 4 || index == 15 || index == 20 || index == 31) {
 				val percent = game(index).slice(0,2)
 				val check = if (percent.contains("%")) percent(0).toDouble else percent.toDouble
-				check * ch.chromosome(index)	
+				(check * ch.chromosome(index)) / averages2013(index).toDouble
 			}
 			else if (index != 0 && index != 1 && index != 16 && index != 17 && index != 32 && index != 33 && index != 34){
-				if(game(index) == "" || game(index) == " ") 0.0 else game(index).toDouble * ch.chromosome(index)
+				if(game(index) == "" || game(index) == " ") 0.0 else (game(index).toDouble * ch.chromosome(index)) / averages2013(index).toDouble
 			}
 			else if (index == 32){
-				if (game(index) == "H") 100.0 * ch.chromosome(index)
-				else -100.0 * ch.chromosome(index)
+				if (game(index) == "H") 3.0 * ch.chromosome(index)
+				else -3.0 * ch.chromosome(index)
 			}
 			else 0.0
 		}

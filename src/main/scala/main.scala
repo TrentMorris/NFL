@@ -26,7 +26,7 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
       // val popSize = 500
       // val bestPopSize = 25
       val mutationRate = 0.01
-      val randomToBreed = 30
+
       /*
       This is start week / lastNGames
         Week 3/2 = 224
@@ -35,8 +35,8 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
         Week 6/5 = 179
         Week 9/8= 136
       */
-      val gamesPlayed = 208
-      val startWeek = 4
+      val gamesPlayed = 179
+      val startWeek = 5
       val numberOfWeeks = startWeek -1
       val endWeek = 17
       val chromoSize = 35
@@ -47,8 +47,10 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
       var bestChromo: Chromosome = population.getChromosome(0)
       var startTime = System.currentTimeMillis
       var bestGeneration = 0
-      for (popSize <- List(/*50,75,100,150,200,250,500,*/1000)){
+      for (popSize <- List(/*50,75,100,150,200,250,500, */1000)){
         population = firstGenerationPopulation(popSize,chromoSize) 
+        val randomToBreed = (0.3 * popSize).toInt
+
         for (bestPopSize <- List(5,10,15,20,25,50,100,150)){
           if (bestPopSize.toFloat / popSize < .5){
             while(genNumber < 1000){
@@ -110,6 +112,8 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
        val modStats = modifiedWholeStatsFile(new Chromosome(List(0.61338574, 0.76169056, 0.8021685, 0.5939546, 0.74049217, 0.72659105, 0.101869285, 0.13691431, 0.29491824, 0.018843234, 0.807086, 0.25173426, 0.98386025, 0.9401516, 0.9808392, 0.7735183, 0.049080968, 0.9724284, -0.7373422, -0.32033145, -0.24640495, -0.028780937, -0.12793517, -0.4479282, -0.7457829, -0.2957958, -0.7367345, -0.6005178, -0.41967326, -0.18996459, -0.7453719, -0.8707354, -0.22742528, -0.17128617, -0.9482321).map(_.toFloat)))
        // master ! Season(1,1, 17,3,"2013", modStats)
       master ! GAGame(1, "Dallas Cowboys", "Denver Broncos", 5, 4, "2013",modStats.slice(WeekIndexes2013.weekFive, WeekIndexes2013.weekSix), modStats)
+      val best = modStats.sortBy(_._3)
+      best.foreach(println)
       Thread.sleep(2000)
     }
     system.shutdown()
