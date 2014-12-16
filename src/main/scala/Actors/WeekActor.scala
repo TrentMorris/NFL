@@ -28,6 +28,8 @@ class WeekActor extends Actor with WinnerCalculator {
 		}
 		case ClearGameList => gameList = List()
 
-		case g@GAGame(_,_,_,_,_,_,_,_)=> GameActor ! g
+		case g@SingleGame(_,_,_,_,_,_,_)=> {
+			GameActor ! g
+		}
 	}
 }

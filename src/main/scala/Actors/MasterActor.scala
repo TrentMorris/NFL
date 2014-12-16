@@ -12,6 +12,8 @@ import akka.dispatch.Await
 case class Season(chromosomeNumber: Int, startWeek: Int, endWeek: Int, lastNGames: Int, year: String, newStats: List[(String, String, Double, String)])
 case class Week(chromosomeNumber: Int,  week: Int, weekStats: List[(String, String, Double,String)], lastNGames: Int, year: String,newStats: List[(String, String, Double,String)])
 case class GAGame(chromosomeNumber: Int, t1: String, t2: String, week: Int, lastNGames: Int,  year: String,weekStats: List[(String, String, Double,String)], newStats: List[(String, String, Double,String)])
+case class SingleGame(winner: String, t1: String, t2: String, week: Int, lastNGames: Int, weekStats: List[(String, String, Double,String)], newStats: List[(String, String, Double, String)])
+
 case class GAGameResult(chromosomeNumber: Int, correct: Int)
 case object GiveResults
 case object ClearGameList
@@ -41,6 +43,8 @@ class Master extends Actor with WinnerCalculator{
 		}
 		case c@ClearGameList => WeekActor ! c
 
-		case g@GAGame(_,_,_,_,_,_,_,_) => WeekActor ! g
+		case g@SingleGame(_,_,_,_,_,_,_) => {
+			WeekActor ! g
+		}
 	}
 }

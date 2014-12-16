@@ -18,7 +18,7 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
     val system = ActorSystem("master")
     val master = system.actorOf(Props(new Master()), name = "master")
 
-    val runGA = false
+    val runGA = true
 
     implicit val timeout = Timeout(10 seconds)
 
@@ -47,7 +47,7 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
       var bestChromo: Chromosome = population.getChromosome(0)
       var startTime = System.currentTimeMillis
       var bestGeneration = 0
-      for (popSize <- List(/*50,75,100,150,200,250,500,*/1000)){
+      for (popSize <- List(50,75,100,150,200,250,500,1000)){
         val randomToBreed = (0.3 * popSize).toInt
         population = firstGenerationPopulation(popSize,chromoSize) 
         for (bestPopSize <- List(5,10,15,20,25,50,100,150)){
@@ -108,13 +108,17 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
       }
 
     else {
+     
        val modStats = modifiedWholeStatsFile(new Chromosome(List(0.61338574, 0.76169056, 0.8021685, 0.5939546, 0.74049217, 0.72659105, 0.101869285, 0.13691431, 0.29491824, 0.018843234, 0.807086, 0.25173426, 0.98386025, 0.9401516, 0.9808392, 0.7735183, 0.049080968, 0.9724284, -0.7373422, -0.32033145, -0.24640495, -0.028780937, -0.12793517, -0.4479282, -0.7457829, -0.2957958, -0.7367345, -0.6005178, -0.41967326, -0.18996459, -0.7453719, -0.8707354, -0.22742528, -0.17128617, -0.9482321).map(_.toFloat)))
-       // master ! Season(1,1, 17,3,"2013", modStats)
-      // master ! GAGame(1, "Dallas Cowboys", "Denver Broncos", 5, 4, "2013",modStats.slice(WeekIndexes2013.weekFive, WeekIndexes2013.weekSix), modStats)
+
+       // master ! SingleGame("Seattle Seahawks", "Denver Broncos", "Seattle Seahawks", 18, 16,modStats.slice(WeekIndexes2013.weekFive, WeekIndexes2013.weekSix), modStats)
       // val best = modStats.sortBy(_._3).slice(modStats.size - 10, modStats.size)
       // best.foreach(println)
+      val allTeams = List("Baltimore Ravens","Denver Broncos","Arizona Cardinals","Atlanta Falcons","Buffalo Bills","Carolina Panthers","Chicago Bears","Cincinnati Bengals","Cleveland Browns","Dallas Cowboys","Detroit Lions","Green Bay Packers","Indianapolis Colts","Jacksonville Jaguars","Kansas City Chiefs","Miami Dolphins","Minnesota Vikings","New England Patriots","New Orleans Saints","New York Giants","New York Jets","Oakland Raiders","Pittsburgh Steelers","San Francisco 49ers","Seattle Seahawks","St Louis Rams","Tampa Bay Buccaneers","Tennessee Titans","Houston Texans","Philadelphia Eagles","San Diego Chargers","Washington Redskins")
+      val teamScores = for (team <- allTeams) yield (team, newCalculateTotalTeamScore(lastNGames2013(team, 18,16,modStats)))
+      teamScores.sortBy(x => x._2).reverse.foreach(println)
       Thread.sleep(2000)
-      lastNGames2013("Pittsburgh Steelers", 18, 16, modStats).sortBy(x => x._2).foreach(println)
+      // lastNGames2013("New England Patriots", 18, 16, modStats).sortBy(x => x._2).foreach(println)
     }
     system.shutdown()
   }
