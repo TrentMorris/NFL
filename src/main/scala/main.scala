@@ -18,7 +18,7 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
     val system = ActorSystem("master")
     val master = system.actorOf(Props(new Master()), name = "master")
 
-    val runGA = true
+    val runGA = false
 
     implicit val timeout = Timeout(10 seconds)
 
@@ -111,9 +111,10 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
        val modStats = modifiedWholeStatsFile(new Chromosome(List(0.61338574, 0.76169056, 0.8021685, 0.5939546, 0.74049217, 0.72659105, 0.101869285, 0.13691431, 0.29491824, 0.018843234, 0.807086, 0.25173426, 0.98386025, 0.9401516, 0.9808392, 0.7735183, 0.049080968, 0.9724284, -0.7373422, -0.32033145, -0.24640495, -0.028780937, -0.12793517, -0.4479282, -0.7457829, -0.2957958, -0.7367345, -0.6005178, -0.41967326, -0.18996459, -0.7453719, -0.8707354, -0.22742528, -0.17128617, -0.9482321).map(_.toFloat)))
        // master ! Season(1,1, 17,3,"2013", modStats)
       // master ! GAGame(1, "Dallas Cowboys", "Denver Broncos", 5, 4, "2013",modStats.slice(WeekIndexes2013.weekFive, WeekIndexes2013.weekSix), modStats)
-      val best = modStats.sortBy(_._3).slice(modStats.size - 10, modStats.size)
-      best.foreach(println)
+      // val best = modStats.sortBy(_._3).slice(modStats.size - 10, modStats.size)
+      // best.foreach(println)
       Thread.sleep(2000)
+      lastNGames2013("Pittsburgh Steelers", 18, 16, modStats).sortBy(x => x._2).foreach(println)
     }
     system.shutdown()
   }
