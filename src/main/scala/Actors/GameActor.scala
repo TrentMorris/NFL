@@ -20,7 +20,6 @@ class GameActor extends Actor with WinnerCalculator {
 
     case SingleGame(winner, t1, t2, weekOfSeason, lastNGames, weekStats, newStats) => {
       val guessedWinner = calculateWinner2013(t1,t2,weekOfSeason,lastNGames,newStats)
-      // val game = weekStats(weekStats.indexWhere(x => x._1 == t1 && x._2 == t2))
       println("%s versus %s\nGuessed Winner - %s\nActual Winner - %s\n\n".format(t1,t2,guessedWinner, winner))
     }
   }
