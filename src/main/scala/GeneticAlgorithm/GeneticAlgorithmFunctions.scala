@@ -80,10 +80,10 @@ trait GeneticAlgorithmScala {
 
 	def getChromosomeFromPopulation(pop: Population, index: Int): Chromosome = pop.population(index)
 
-	def resultsToAmountRight(result: List[(Int, Int)], gamesToSort: Int) = {
+	def resultsToAmountRight(result: List[(Int, Int)], gamesToSort: Int, popSize: Int) = {
 		val sortedResult = result.sortBy(_._1)
 		val slidingResult = sortedResult.sliding(gamesToSort,gamesToSort).toList
 		val amountRight = slidingResult.map(x => x.foldLeft(0)((b,a) => b + a._2))
-		(List.range(0,100), amountRight).zipped.toList
+		(List.range(0,popSize), amountRight).zipped.toList
 	}
 }

@@ -35,8 +35,8 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
         Week 6/5 = 179
         Week 9/8= 136
       */
-      val gamesPlayed = 208
-      val startWeek = 4
+      val gamesPlayed = 179
+      val startWeek = 6
       val numberOfWeeks = startWeek -1
       val endWeek = 17
       val chromoSize = 35
@@ -47,10 +47,10 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
       var bestChromo: Chromosome = population.getChromosome(0)
       var startTime = System.currentTimeMillis
       var bestGeneration = 0
-      for (popSize <- List(50,75,100,150,200,250,500,1000)){
+      for (popSize <- List(50,100,150,200,250)){
         val randomToBreed = (0.3 * popSize).toInt
         population = firstGenerationPopulation(popSize,chromoSize) 
-        for (bestPopSize <- List(5,10,15,20,25,50,100,150)){
+        for (bestPopSize <- List(10,15,20,25,50,100)){
           if (bestPopSize.toFloat / popSize < .5){
             while(genNumber < 1000){
               genNumber += 1
@@ -75,7 +75,7 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
               }
               master ! ClearGameList
 
-              val chromoRight = resultsToAmountRight(result, gamesPlayed)
+              val chromoRight = resultsToAmountRight(result, gamesPlayed, popSize)
               val x = getBestChromosomeAndScoreFromPopulation(chromoRight, population)
 
               if (x._2 > bestScore ){
@@ -90,7 +90,7 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
               "date" !
               val st = "Population | " + popSize + " Best Population | " + bestPopSize
               println(st)
-               println(bestGeneration + "/" + bestScore + "/" + bestScore.toDouble/gamesPlayed)
+               println(bestGeneration + "/" + bestScore + "/%.2f".format(bestScore.toDouble/gamesPlayed))
               // println("Found in generation %d || Best percentage so far: %.2f || Best score %d || Generation %d".format(bestGeneration, bestScore.toDouble/gamesPlayed, bestScore, genNumber))
               val stopTime = System.currentTimeMillis
               // println("\t1000 generations took " + ((stopTime - startTime) / 1000) + " seconds")
@@ -127,7 +127,7 @@ object NFLPredictor extends WinnerCalculator with GeneticAlgorithmScala{
 /*
 Best chromosomes
 3 games 
-0.63592553, 0.15120292, 0.23907167, 0.8475953, 0.8328645, 0.09223586, 0.18790644, 0.099512696, 0.95029724, 0.8230496, 0.09315848, 0.2622009, 0.13521594, 0.85268235, 0.30693144, 0.7498801, 0.15472305, 0.13986552, -0.31777924, -0.39178306, -0.10280812, -0.7827825, -0.028317332, -0.7707158, -0.49661887, -0.022162616, -0.0025021434, -0.19239175, -0.26015913, -0.6018839, -0.17569453, -0.5104043, -0.24357498, -0.24775493, -0.8744899
+0.2978502, 0.47949427, 0.2585013, 0.31688225, 0.0011273026, 0.91235363, 0.06079048, 0.54950273, 0.98919576, 0.9842024, 0.596068, 0.91652054, 0.79031575, 0.8186415, 0.6037556, 0.67502874, 0.39406127, 0.36110634, -0.079165936, -0.5132679, -0.9370438, -0.6696407, -0.56158584, -0.36721563, -0.012990832, -0.07728946, -0.17084295, -0.069452345, -0.28492665, -0.08830798, -0.09068209, -0.090818346, -0.9391762, -0.7844101, -0.35481334
 
 5 games
 
