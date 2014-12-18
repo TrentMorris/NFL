@@ -56,8 +56,8 @@ trait GeneticAlgorithmScala {
 			}
 		val bestMutated: List[Chromosome] = (for (ch <- bestPop) yield {
 			if (Random.nextFloat < mutationRate) mutateChromosome(ch, Random.nextInt(ch.size))
-			else Chromosome.basicChromosome(35)
-			}).filter(x => x.chromosome != Chromosome.basicChromosome(35).chromosome)
+			else Chromosome.apply(35)
+			}).filter(x => x.chromosome != Chromosome.apply(35).chromosome)
 
 		val allButRandom: List[Chromosome] = bestPop ::: randomBredWithRandom ::: bestBreedWithRandomPopulation ::: bestMutated
 		val remainingNeeded = popSize - allButRandom.size 
